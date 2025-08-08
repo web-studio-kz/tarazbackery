@@ -1,0 +1,35 @@
+.wrapper {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.page {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    transition: background-color 0.2s, border-color 0.2s;
+    user-select: none;
+    cursor: pointer;
+}
+
+.page:hover {
+    background-color: var(--background-hover);
+    border-color: #ddd;
+}
+
+.currentPage {
+    composes: page; 
+    background-color: var(--kfc-red);
+    border-color: var(--kfc-red);
+    color: var(--text-light);
+    font-weight: bold;
+    cursor: default; 
+}
+
+
+.currentPage:hover {
+    background-color: var(--kfc-red);
+    border-color: var(--kfc-red);
+}

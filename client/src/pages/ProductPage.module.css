@@ -1,0 +1,117 @@
+.productPage {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Две колонки: левая для картинки, правая для инфо */
+    gap: 40px;
+    align-items: flex-start;
+    padding-top: 20px;
+}
+
+.imageColumn img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    background-color: var(--background-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.infoColumn {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; 
+}
+
+.infoColumn h1 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    flex-grow: 1; /* Чтобы кнопка была всегда внизу */
+    margin-bottom: 2rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--kfc-red);
+}
+
+.priceLabel {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.addButton {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--kfc-red);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.addButton:hover {
+    transform: scale(1.05);
+}
+
+.inCartButton {
+    composes: addButton; 
+    background-color: #e31837; 
+    opacity: 0.7; 
+    cursor: default; 
+}
+
+
+.inCartButton:hover {
+    transform: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .productPage {
+        grid-template-columns: 1fr; /* Одна колонка на мобильных */
+    }
+    .infoColumn h1 {
+        font-size: 2rem;
+    }
+    .addButton {
+        width: 100%;
+    }
+    .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-top: 1px solid var(--border-color);
+        padding-top: 20px;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    .price {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--kfc-red);
+    }
+    
+    .priceLabel {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-dark);
+    }
+}

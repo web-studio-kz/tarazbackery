@@ -1,0 +1,17 @@
+export const MENU_ROUTE = '/'
+export const RESTAURANTS_ROUTE = '/restaurants'
+export const CART_ROUTE = '/cart';
+export const LOGIN_ROUTE = '/login';
+export const REGISTRATION_ROUTE = '/registration';
+export const PROFILE_ROUTE = '/profile';
+export const PRODUCT_ROUTE = '/product';
+export const GOOGLE_CALLBACK_ROUTE = '/auth/callback';
+export const FINISH_REGISTRATION_ROUTE = '/finish-registration';
+export const ABOUT_ROUTE = '/about';
+export const NEWS_ROUTE = '/news';
+export const JOBS_ROUTE = '/jobs';
+export const TERMS_ROUTE = '/terms';
+export const PRIVACY_ROUTE = '/privacy';
+export const FAQ_ROUTE = '/faq';
+export const CONTACTS_ROUTE = '/contacts';
+export const FEEDBACK_ROUTE = '/feedback';

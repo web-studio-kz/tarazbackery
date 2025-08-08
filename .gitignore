@@ -1,0 +1,24 @@
+# Файлы зависимостей
+# Игнорировать node_modules в любой папке (и в корне, и в client/, и в server/)
+**/node_modules
+
+# Файлы переменных окружения
+# Игнорировать .env в любой папке
+**/.env
+
+# Логи и временные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# Сборочные директории
+# Игнорировать папку build в client/ (результат `npm run build`)
+client/build
+# Игнорировать папку dist (если бы у вас был TypeScript)
+dist
+
+# Системные файлы macOS и Windows
+.DS_Store
+Thumbs.db
