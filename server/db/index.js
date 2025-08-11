@@ -1,17 +1,25 @@
+// server/db/index.js
+
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+// Определяем, нужна ли опция SSL
+const isProduction = process.env.NODE_ENV === 'production';
+
+const options = {
     dialect: 'postgres',
-    // Если деплоить на Heroku или аналог, может понадобиться эта опция
-    // protocol: 'postgres',
-    dialect: 'postgres',
-    dialectOptions: {
+};
+
+// Включаем SSL только для продакшена
+if (isProduction) {
+    options.dialectOptions = {
         ssl: {
             require: true,
             rejectUnauthorized: false
         }
-    }
-});
+    };
+}
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, options);
 
 module.exports = sequelize;

@@ -29,7 +29,7 @@ const ProductItem = ({ product }) => {
                     <img src={imageUrl} alt={product.name} className={styles.image} />
                 </div>
                 <h4 className={styles.title}>{t(`products.${product.id}.name`)}</h4>
-                <p className={styles.price}>{t('price_label', { price: product.price })}</p>
+                <p className={styles.price}>{t('price_label')} <strong>{product.price} тг.</strong></p>
             </Link>
             <button
                 onClick={handleAddToCart}
