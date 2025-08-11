@@ -37,7 +37,9 @@ const oAuthCallbackHandler = (req, res) => {
 
 
 // --- РОУТЫ АУТЕНТИФИКАЦИИ ---
-
+router.get('/test', (req, res) => {
+    res.send('USER ROUTER IS WORKING!');
+});
 // Google
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get(
