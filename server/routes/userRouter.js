@@ -27,21 +27,19 @@ const oAuthCallbackHandler = (req, res) => {
     if (profileOrUser.isTemporary) {
         // Сценарий для НОВОГО пользователя
         const tempToken = jwt.sign(profileOrUser, process.env.SECRET_KEY, { expiresIn: '10m' });
-        const redirectUrl = `${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`;
-        console.log('Redirecting new user to:', redirectUrl);
-        res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
+        res.redirect(`${process.env.CLIENT_URL}/#/finish-registration?tempToken=${tempToken}`);
+        // res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
     } else {
         // Сценарий для СУЩЕСТВУЮЩЕГО пользователя
         const token = generateJwt(profileOrUser.id, profileOrUser.email, profileOrUser.role, profileOrUser.name, profileOrUser.phone);
-        res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+        res.redirect(`${process.env.CLIENT_URL}/#/auth/callback?token=${token}`);
+        // res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
     }
 };
 
 
 // --- РОУТЫ АУТЕНТИФИКАЦИИ ---
-router.get('/test', (req, res) => {
-    res.send('USER ROUTER IS WORKING!');
-});
+
 // Google
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get(
