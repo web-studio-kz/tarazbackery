@@ -11,7 +11,6 @@ import AppLayout from './components/layout/AppLayout/AppLayout';
 import Spinner from './components/ui/Spinner/Spinner';
 import { check } from './http/userAPI';
 import { setIsAuth, setUser } from './store/userSlice';
-import { HashRouter } from 'react-router-dom'; 
 
 
 const App = () => {
@@ -39,7 +38,7 @@ const App = () => {
     }
     
     return (
-        <HashRouter>
+        <BrowserRouter>
             <AppLayout>
                 <AppRouter />
             </AppLayout>
@@ -49,7 +48,7 @@ const App = () => {
                 autoClose={3000}
                 theme="light"
             />
-        </HashRouter>
+        </BrowserRouter>
     );
 };
 

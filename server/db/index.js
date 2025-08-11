@@ -1,17 +1,19 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const options = {
     dialect: 'postgres',
-    // Если деплоить на Heroku или аналог, может понадобиться эта опция
-    // protocol: 'postgres',
-    dialect: 'postgres',
-    dialectOptions: {
+};
+
+if (process.env.NODE_ENV === 'production') {
+    options.dialectOptions = {
         ssl: {
             require: true,
             rejectUnauthorized: false
         }
-    }
-});
+    };
+}
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, options);
 
 module.exports = sequelize;

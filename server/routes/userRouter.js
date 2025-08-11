@@ -27,13 +27,11 @@ const oAuthCallbackHandler = (req, res) => {
     if (profileOrUser.isTemporary) {
         // Сценарий для НОВОГО пользователя
         const tempToken = jwt.sign(profileOrUser, process.env.SECRET_KEY, { expiresIn: '10m' });
-        res.redirect(`${process.env.CLIENT_URL}/#/finish-registration?tempToken=${tempToken}`);
-        // res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
+        res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
     } else {
         // Сценарий для СУЩЕСТВУЮЩЕГО пользователя
         const token = generateJwt(profileOrUser.id, profileOrUser.email, profileOrUser.role, profileOrUser.name, profileOrUser.phone);
-        res.redirect(`${process.env.CLIENT_URL}/#/auth/callback?token=${token}`);
-        // res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+        res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
     }
 };
 
