@@ -18,18 +18,22 @@ class ProductController {
     async getAll(req, res) {
         let { categoryId, limit, page } = req.query;
         page = page || 1;
-        limit = limit || 9; // 9 продуктов на странице
+        limit = limit || 9;
         let offset = page * limit - limit;
-
-        let products;
-        if (!categoryId) {
-            // Если категория не выбрана, показываем все товары
-            products = await Product.findAndCountAll({ limit, offset });
-        } else {
-            // Если выбрана, фильтруем по ней
-            products = await Product.findAndCountAll({ where: { categoryId }, limit, offset });
+    
+        // --- ДОБАВЛЯЕМ ЯВНОЕ УКАЗАНИЕ ПОЛЕЙ ---
+        const options = {
+            limit,
+            offset,
+            attributes: ['id', 'name', 'price', 'imageUrl', 'categoryId'] // Убеждаемся, что price здесь есть
+        };
+    
+        if (categoryId) {
+            options.where = { categoryId };
         }
-
+    
+        const products = await Product.findAndCountAll(options);
+    
         return res.json(products);
     }
 
