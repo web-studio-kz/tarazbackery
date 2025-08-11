@@ -27,6 +27,8 @@ const oAuthCallbackHandler = (req, res) => {
     if (profileOrUser.isTemporary) {
         // Сценарий для НОВОГО пользователя
         const tempToken = jwt.sign(profileOrUser, process.env.SECRET_KEY, { expiresIn: '10m' });
+        const redirectUrl = `${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`;
+        console.log('Redirecting new user to:', redirectUrl);
         res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
     } else {
         // Сценарий для СУЩЕСТВУЮЩЕГО пользователя

@@ -18,11 +18,6 @@ const AuthPage = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.authForm}>
-            <div style={{ border: '2px solid red', padding: '10px', marginBottom: '20px', wordBreak: 'break-all' }}>
-                    <p><strong>DEBUG INFO:</strong></p>
-                    <p>VITE_API_URL: <strong>{import.meta.env.VITE_API_URL}</strong></p>
-                    <p>Generated Google URL: <strong>{GOOGLE_AUTH_URL}</strong></p>
-                </div>
                 <h2>{ t('login_title') }</h2>
                 <p>{ t('login_subtitle') }</p>
                 <div className={styles.buttonGroup}>
