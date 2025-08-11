@@ -33,7 +33,7 @@ class ProductController {
         }
     
         const products = await Product.findAndCountAll(options);
-    
+        console.log("RAW DATA FROM SEQUELIZE ON RENDER:", JSON.stringify(products, null, 2));
         return res.json(products);
     }
 
