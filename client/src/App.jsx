@@ -14,8 +14,6 @@ import { setIsAuth, setUser } from './store/userSlice';
 
 
 const App = () => {
-    console.log('VITE_API_URL from Vercel build:', import.meta.env.VITE_API_URL);
-
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
 

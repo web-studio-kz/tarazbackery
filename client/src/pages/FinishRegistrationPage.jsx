@@ -94,7 +94,7 @@ const FinishRegistrationPage = () => {
                 <p className={styles.subtitle}>{t('finish_reg_subtitle')}</p>
                 
                 <div className={styles.warning}>
-                <strong>{t('finish_reg_warning_strong')}</strong>
+                <strong>{t('finish_reg_warning')}</strong>
                 </div>
 
                 <input
