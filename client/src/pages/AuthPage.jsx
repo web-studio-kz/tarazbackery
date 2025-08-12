@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 // URL нашего бэкенда для инициации входа через Google
 // const GOOGLE_AUTH_URL = `${import.meta.env.VITE_API_URL}api/users/google`;
-// const YANDEX_AUTH_URL = `${import.meta.env.VITE_API_URL}api/users/yandex`;
+const YANDEX_AUTH_URL = `${import.meta.env.VITE_API_URL}api/users/yandex`;
 const GOOGLE_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/google';
-const YANDEX_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/yandex';
+// const YANDEX_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/yandex';
 
 const AuthPage = () => {
 
