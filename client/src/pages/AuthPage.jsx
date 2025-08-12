@@ -5,18 +5,18 @@ import { useTranslation } from 'react-i18next';
 
 
 // URL нашего бэкенда для инициации входа через Google
-// const GOOGLE_AUTH_URL = `${import.meta.env.VITE_API_URL}api/users/google`;
+const GOOGLE_AUTH_URL = `${import.meta.env.VITE_API_URL}api/users/google`;
 const YANDEX_AUTH_URL = `${import.meta.env.VITE_API_URL}api/users/yandex`;
-const GOOGLE_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/google';
+// const GOOGLE_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/google';
 // const YANDEX_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/yandex';
 
 const AuthPage = () => {
 
-    const googleLogin = () => {
-        // Не переходим по ссылке, а просто выводим ее в alert
-        alert('URL для перехода: ' + GOOGLE_AUTH_URL); 
+    // const googleLogin = () => {
+        // alert('URL для перехода: ' + GOOGLE_AUTH_URL); 
         // window.location.href = GOOGLE_AUTH_URL; // временно комментируем переход
-    };
+    // };
+    const googleLogin = () => { window.location.href = GOOGLE_AUTH_URL; };
     const yandexLogin = () => { window.location.href = YANDEX_AUTH_URL; };
     const { t } = useTranslation('auth');
 
