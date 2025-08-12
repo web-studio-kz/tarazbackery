@@ -12,7 +12,11 @@ const YANDEX_AUTH_URL = 'https://tarazbackery.onrender.com/api/users/yandex';
 
 const AuthPage = () => {
 
-    const googleLogin = () => { window.location.href = GOOGLE_AUTH_URL; };
+    const googleLogin = () => {
+        // Не переходим по ссылке, а просто выводим ее в alert
+        alert('URL для перехода: ' + GOOGLE_AUTH_URL); 
+        // window.location.href = GOOGLE_AUTH_URL; // временно комментируем переход
+    };
     const yandexLogin = () => { window.location.href = YANDEX_AUTH_URL; };
     const { t } = useTranslation('auth');
 
