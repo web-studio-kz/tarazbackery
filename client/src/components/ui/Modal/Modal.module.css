@@ -1,5 +1,5 @@
 .modal {
-    height: 100vh;
+    height: 100vw;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
