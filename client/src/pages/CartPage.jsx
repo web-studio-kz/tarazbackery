@@ -159,7 +159,7 @@ const CartPage = () => {
             <Modal active={mapModalActive} setActive={setMapModalActive}>
                 <div className={styles.deliverySection}>
                     <h2>{t('delivery_address_title')}</h2>
-                    <p>{t('delivery_address_subtitle')}</p>
+                    {/* <p>{t('delivery_address_subtitle')}</p> */}
                     <MapPicker onAddressSelect={handleAddressSelect} />
                     {deliveryAddress && (
                         <div className={isAddressValid ? styles.addressInfo : styles.addressError}>
