@@ -5,7 +5,7 @@
     "delivery_address_title": "Жеткізу мекенжайын таңдаңыз",
     "delivery_address_subtitle": "Картадан нүктені көрсетіңіз немесе іздеуді пайдаланыңыз.",
     "selected_address": "Таңдалған мекенжай:",
-    "address_error": "Бұл үшін жеткізу мүмкін емес.",
+    "address_error": "Бұл мекенжайға жеткізу мүмкін емес.",
     "go_to_checkout": "Ресімдеуге өту",
     "confirm_order": "Тапсырысты растау",
     "total_label":"Жалпы",
