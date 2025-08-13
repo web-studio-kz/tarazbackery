@@ -1,7 +1,7 @@
 /* src/components/layout/Header/Header.module.css (ФИНАЛЬНАЯ ИСПРАВЛЕННАЯ ВЕРСИЯ) */
 
 .header {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     padding: 10px 40px;
@@ -71,8 +71,8 @@
     border: 1px solid var(--kfc-red);
 }
 
-/* @media (min-width: 769px) {
+@media (min-width: 769px) {
     .header {
         display: flex;
     }
-} */
+}
