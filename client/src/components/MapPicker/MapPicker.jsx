@@ -74,7 +74,7 @@ const MapPicker = ({ onAddressSelect }) => {
                 <Map
                     state={mapState}
                     width="100%"
-                    height="400px"
+                    height="350px"
                     onClick={handleMapClick}
                     onLoad={(ymaps) => setYmapsApi(ymaps)}
                 >
