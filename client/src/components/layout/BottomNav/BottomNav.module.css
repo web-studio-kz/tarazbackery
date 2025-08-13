@@ -8,16 +8,16 @@
     height: 60px;
     background-color: var(--background-white);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
-    display: none; /* <-- По умолчанию скрыто на десктопах */
+    display: flex;
     align-items: center;
     justify-content: space-around;
     z-index: 1000;
 }
 
 /* --- Включаем панель ТОЛЬКО на мобильных устройствах --- */
-@media (max-width: 768px) {
+@media (min-width: 769px) {
     .navBar {
-        display: flex;
+        display: none;
     }
 }
 
