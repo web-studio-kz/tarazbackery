@@ -15,11 +15,11 @@
 }
 
 /* --- Включаем панель ТОЛЬКО на мобильных устройствах --- */
-@media (min-width: 769px) {
+/* @media (min-width: 769px) {
     .navBar {
         display: none;
     }
-}
+} */
 
 .navLink {
     display: flex;
