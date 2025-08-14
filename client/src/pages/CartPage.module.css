@@ -29,8 +29,7 @@
 .itemPrice { font-weight: bold; font-size: 1.1rem; min-width: 100px; text-align: right; }
 
 .addressInfo {
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin-top: 5px;
     padding: 5px;
     border-radius: 8px;
     background-color: var(--info-background);
@@ -51,6 +50,7 @@
 }
 .totalPrice { font-size: 1.2rem; font-weight: bold; }
 .orderButton {
+    margin-top: 5px;
     padding: 12px 24px;
     font-size: 1rem;
     font-weight: 600;
