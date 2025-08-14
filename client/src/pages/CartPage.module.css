@@ -8,7 +8,7 @@
 
 .cartItems, .deliverySection {
     background-color: var(--background-white);
-    padding: 10px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
@@ -30,7 +30,8 @@
 
 .addressInfo {
     margin-top: 15px;
-    padding: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
     border-radius: 8px;
     background-color: var(--info-background);
 }
