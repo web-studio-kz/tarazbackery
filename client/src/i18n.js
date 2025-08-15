@@ -27,7 +27,7 @@ i18n
     
     // Настройки для определения языка пользователя
     detection: {      
-        order: ['localStorage', 'cookie', 'navigator'],      
+        order: ['localStorage', 'cookie'],      
         caches: ['localStorage', 'cookie'],
     },
 
