@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from '../styles/StaticPage.module.css';
-import { useTranslation } from 'react-i18next';
-import { i18n } from 'i18next';
+import { useTranslation } from '../i18n';
 
 export default async function AboutPage({ params: { lng } }) {
-    const { t } = await i18n.changeLanguage(lng);
+    const { t } = await useTranslation(lng, 'footer');
 
     return (
         <div className={styles.page}>

@@ -34,7 +34,7 @@ const Footer = () => {
                     </div>
 
                     {/* Раскомментировал этот блок и заменил `to` на `href` */}
-                    <div className={styles.linksSection}>
+                    {/* <div className={styles.linksSection}>
                         <div className={styles.linksColumn}>
                             <h4>{t('info')}</h4>
                             <Link href={ABOUT_ROUTE}>{t('about')}</Link>
@@ -49,7 +49,7 @@ const Footer = () => {
                             <Link href={CONTACTS_ROUTE}>{t('contacts')}</Link>
                             <Link href={FEEDBACK_ROUTE}>{t('feedback')}</Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.bottomSection}>
                     <p>{t('copyright', { year: new Date().getFullYear() })}</p>
