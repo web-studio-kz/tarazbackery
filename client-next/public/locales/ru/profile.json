@@ -1,0 +1,14 @@
+{
+    "title": "Личный кабинет",
+    "my_data": "Мои данные",
+    "name": "Имя",
+    "email": "Email",
+    "phone": "Телефон",
+    "my_orders": "Мои заказы",
+    "no_orders": "Вы еще не сделали ни одного заказа.",
+    "order_number": "Заказ №{{id}}",
+    "order_date": "от {{date}}",
+    "status": "Статус",
+    "delivery_address": "Адрес доставки",
+    "total": "Итого"
+}

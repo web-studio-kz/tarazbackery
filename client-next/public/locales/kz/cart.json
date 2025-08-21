@@ -1,0 +1,15 @@
+{
+    "title": "Себет",
+    "empty_title": "Сіздің себетіңіз бос",
+    "back_to_menu": "Мәзірге оралу",
+    "delivery_address_title": "Жеткізу мекенжайын таңдаңыз",
+    "delivery_address_subtitle": "Картадан нүктені көрсетіңіз немесе іздеуді пайдаланыңыз.",
+    "selected_address": "Таңдалған мекенжай:",
+    "address_error": "Бұл мекенжайға жеткізу мүмкін емес.",
+    "go_to_checkout": "Ресімдеуге өту",
+    "confirm_order": "Тапсырысты растау",
+    "total_label":"Жалпы",
+    "delivery_method_title": "Алу тәсілі",
+    "pickup": "Өзі алып кету",
+    "delivery_with_cost": "Жеткізу (+{{cost}} тг.)"
+}

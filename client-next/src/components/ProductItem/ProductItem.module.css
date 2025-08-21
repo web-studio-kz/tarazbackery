@@ -1,0 +1,64 @@
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.imageContainer {
+    margin-bottom: 1rem;
+}
+
+.image {
+    max-width: 100%;
+    height: 160px;
+    object-fit: contain;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    flex-grow: 1; /* Чтобы карточки в одной строке были одинаковой высоты */
+}
+
+.price {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 2px solid var(--kfc-red);
+    background-color: white;
+    color: var(--kfc-red);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    background-color: var(--kfc-red);
+    color: white;
+}
+
+.inCartButton {
+    composes: button;
+    background-color: var(--kfc-red);
+    color: white;
+    cursor: default;
+}

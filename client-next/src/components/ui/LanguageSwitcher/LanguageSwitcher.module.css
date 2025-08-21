@@ -1,0 +1,39 @@
+.switcher {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 4px; /* Немного изменим паддинг */
+    height: 40px; /* <-- УСТАНАВЛИВАЕМ ТУ ЖЕ ВЫСОТУ */
+    box-sizing: border-box; /* Важно, чтобы padding не увеличивал высоту */
+    position: relative; /* Включаем возможность позиционирования */
+    top: -7px;
+}
+
+.switcher button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 4px 10px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    height: 100%; /* Растягиваем кнопки на всю высоту родителя */
+}
+
+
+.switcher button:disabled {
+    cursor: default;
+}
+
+.switcher button.active {
+    background-color: white;
+    color: var(--kfc-red);
+}
+
+.divider {
+    width: 1px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.3);
+}

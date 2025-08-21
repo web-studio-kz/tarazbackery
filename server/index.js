@@ -19,7 +19,7 @@ app.set('trust proxy', 1);
 // --- ПОРЯДОК MIDDLEWARE ---
 
 // 1. CORS - самый первый
-const whitelist = [process.env.CLIENT_URL, process.env.LOCAL_URL];
+const whitelist = [process.env.CLIENT_URL, process.env.LOCAL_URL, process.env.NEXT_LOCAL_URL];
 app.use(cors({
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {

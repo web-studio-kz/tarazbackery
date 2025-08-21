@@ -1,0 +1,15 @@
+{
+    "title": "Корзина",
+    "empty_title": "Ваша корзина пуста",
+    "back_to_menu": "Вернуться в меню",
+    "delivery_address_title": "Выберите адрес доставки",
+    "delivery_address_subtitle": "Укажите точку на карте или воспользуйтесь поиском.",
+    "selected_address": "Выбранный адрес:",
+    "address_error": "Доставка по адресу недоступна.",
+    "go_to_checkout": "Оформить",
+    "confirm_order": "Подтвердить заказ",
+    "total_label":"Итого",
+    "delivery_method_title": "Способ получения",
+    "pickup": "Самовывоз",
+    "delivery_with_cost": "Доставка (+{{cost}} тг.)"
+}
