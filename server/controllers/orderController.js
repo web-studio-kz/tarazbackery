@@ -1,50 +1,31 @@
-const crypto = require('crypto'); // <-- ВОТ НЕДОСТАЮЩАЯ СТРОКА
 const { Order, OrderItem, Product, User } = require('../models');
 const ApiError = require('../error/ApiError');
 const mailService = require('../services/mailService');
 
 const DELIVERY_COST = 1000;
 
-const createCanonicalString = (items) => {
-    if (!Array.isArray(items) || items.length === 0) return '';
-    return items
-        .slice()
-        .sort((a, b) => a.id - b.id)
-        .map(item => `${item.id}:${item.quantity}`)
-        .join(';') + ';';
-};
-
 class OrderController {
     async create(req, res, next) {
         try {
             const { id: userId } = req.user;
-            const { items, deliveryType, address, latitude, longitude, signature } = req.body;
+            const { items, deliveryType, address, latitude, longitude } = req.body;
 
-            if (!items || items.length === 0 || !signature) {
-                return next(ApiError.badRequest('Неполные данные для создания заказа.'));
+            if (!items || items.length === 0) {
+                return next(ApiError.badRequest('Корзина не может быть пустой'));
             }
-
-            const canonicalString = createCanonicalString(items);
-            const expectedSignature = crypto
-                .createHmac('sha256', process.env.SECRET_KEY)
-                .update(canonicalString)
-                .digest('hex');
-
-            const receivedSignBuffer = Buffer.from(signature, 'hex');
-            const expectedSignBuffer = Buffer.from(expectedSignature, 'hex');
-
-            if (receivedSignBuffer.length !== expectedSignBuffer.length || !crypto.timingSafeEqual(receivedSignBuffer, expectedSignBuffer)) {
-                return next(ApiError.badRequest('Ошибка проверки целостности корзины.'));
+            if (!deliveryType) {
+                return next(ApiError.badRequest('Не указан тип доставки'));
             }
 
             const productIds = items.map(item => item.id);
             const productsFromDb = await Product.findAll({ where: { id: productIds } });
-
+            
             if (productsFromDb.length !== productIds.length) {
                 return next(ApiError.badRequest('Один или несколько товаров не найдены в базе данных.'));
             }
 
             const productMap = new Map(productsFromDb.map(p => [p.id, p]));
+
             let itemsTotalPrice = 0;
             for (const item of items) {
                 const product = productMap.get(item.id);
@@ -96,7 +77,6 @@ class OrderController {
             return res.json({ message: "Заказ успешно создан!", orderId: order.id });
 
         } catch (e) {
-            console.error("!!! ОШИБКА В CREATE ORDER:", e); // Оставим отладку на всякий случай
             return next(ApiError.internal(e.message));
         }
     }
@@ -105,7 +85,6 @@ class OrderController {
         const { id: userId } = req.user;
         const orders = await Order.findAll({
             where: { userId },
-            order: [['createdAt', 'DESC']], // Добавим сортировку
             include: [{ model: OrderItem, as: 'items', include: ['Product'] }]
         });
         return res.json(orders);
