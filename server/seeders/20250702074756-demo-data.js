@@ -16,6 +16,8 @@ module.exports = {
     );
     const burgerCategoryId = categories[0][0].id;
     const basketCategoryId = categories[0][1].id;
+    const drinkCategoryId = categories[0][2].id;
+    
 
     // Создаем Продукты
     await queryInterface.bulkInsert('Products', [
@@ -42,6 +44,42 @@ module.exports = {
         description: '16 острых и сочных куриных крылышек в хрустящей панировке Hot&Spicy.',
         price: 4700,
         imageUrl: 'images/products/basket_16.png',
+        categoryId: basketCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Чизбургер',
+        description: '2 стрипса оригинальных, лук, сыр чеддер, маринованные огурцы, горчичный соус, кетчуп, на пшеничной булочке с кунжутом',
+        price: 1700,
+        imageUrl: 'images/products/cheeseburger1.png',
+        categoryId: burgerCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Pepsi',
+        description: 'Газированный прохладительный напиток',
+        price: 500,
+        imageUrl: 'images/products/pepsi.png',
+        categoryId: drinkCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Piala Ананас',
+        description: 'Прохладительный написток со вкусом ананаса',
+        price: 500,
+        imageUrl: 'images/products/icetea.png',
+        categoryId: drinkCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Asu',
+        description: 'Миниральная вода без газа',
+        price: 500,
+        imageUrl: 'images/products/asu.jpg',
         categoryId: basketCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
