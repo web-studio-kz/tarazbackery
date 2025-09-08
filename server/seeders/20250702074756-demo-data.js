@@ -88,8 +88,26 @@ module.exports = {
         name: 'Френдс бокс 36 острых крылышек',
         description: '36 острых крылышек, баскет картофель фри',
         price: 13000,
-        imageUrl: 'images/products/36winds.jpg',
+        imageUrl: 'images/products/36winds.png',
         categoryId: basketCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Дабл Шефбургер',
+        description: '2 филе в уникальной панировке, томаты, салат айсберг, соус Цезарь, булочка и ломтик сыра',
+        price: 3000,
+        imageUrl: 'images/products/doubleburger.png',
+        categoryId: burgerCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Майо кранчер бургер',
+        description: 'Оригинальный стрипс, маринованные огурцы, хашбраун, салат айсберг, ломтик сыра, майонез на пшеничной булочке',
+        price: 2500,
+        imageUrl: 'images/products/mayoburger.png',
+        categoryId: burgerCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -97,7 +115,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    // Команда для отката сидов
     await queryInterface.bulkDelete('Products', null, {});
     await queryInterface.bulkDelete('Categories', null, {});
   }

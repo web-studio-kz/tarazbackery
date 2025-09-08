@@ -2,7 +2,7 @@
     background-color: var(--text-dark);
     color: #a0a0a0;
     padding: 40px 0;
-    margin-top: auto; /* Прижимает футер к низу, если контента мало */
+    margin-top: auto; 
 }
 
 .container {
@@ -76,16 +76,6 @@
     text-align: center; 
 }
 
-/* .legalLinks {
-    display: flex;
-    gap: 20px;
-}
-
-.legalLinks a:hover {
-    text-decoration: underline;
-} */
-
-/* Адаптивность для футера */
 @media (max-width: 768px) {
     .topSection {
         flex-direction: column;
@@ -104,8 +94,6 @@
         padding-bottom: 80px;
     }
 }
-
-/* без колонок с новостями и faq */
 
 .footer {
     background-color: var(--text-dark);

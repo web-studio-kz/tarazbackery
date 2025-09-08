@@ -27,7 +27,7 @@
 
 .nav {
     display: flex;
-    align-items: baseline; /* <-- ИЗМЕНЕНИЕ ЗДЕСЬ */
+    align-items: baseline; 
     gap: 10px;
 }
 

@@ -14,8 +14,7 @@ const MapPicker = ({ onAddressSelect }) => {
     const [placemarkCoords, setPlacemarkCoords] = useState(null);
     const [ymapsApi, setYmapsApi] = useState(null);
     const polygonRef = useRef(null);
-
-    // Геолокация при загрузке
+    
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -28,7 +27,6 @@ const MapPicker = ({ onAddressSelect }) => {
         }
     }, []);
 
-    // Центральная функция для обработки координат
     const processCoords = async (coords) => {
         if (!ymapsApi || !polygonRef.current) return;
         try {
@@ -52,13 +50,11 @@ const MapPicker = ({ onAddressSelect }) => {
         }
     };
 
-    // Обработчик для клика по карте
     const handleMapClick = (e) => {
         const coords = e.get('coords');
         processCoords(coords);
     };
 
-    // Обработчик для выбора результата в стандартном поиске
     const handleSearchResultSelect = (e) => {
         const result = e.get('target').getResultsArray()[0];
         if (result) {
@@ -85,7 +81,6 @@ const MapPicker = ({ onAddressSelect }) => {
                     />
                     {placemarkCoords && <Placemark geometry={placemarkCoords} />}
                     
-                    {/* Используем стандартный SearchControl, он сам все делает */}
                     <SearchControl 
                         options={{
                             float: 'right',
@@ -94,7 +89,7 @@ const MapPicker = ({ onAddressSelect }) => {
                             noPlacemark: true,
                             suppressMapOpen: true
                         }} 
-                        onResultSelect={handleSearchResultSelect} // <-- Используем правильный обработчик
+                        onResultSelect={handleSearchResultSelect} 
                     />
                 </Map>
             </YMaps>

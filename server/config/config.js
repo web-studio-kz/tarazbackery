@@ -15,7 +15,7 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, // Важно для Heroku и других сервисов
+        rejectUnauthorized: false,
       },
     },
   },

@@ -1,6 +1,5 @@
 const rateLimit = require('express-rate-limit');
 
-// Ограничитель для общих API-запросов
 const generalLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
@@ -9,7 +8,6 @@ const generalLimiter = rateLimit({
     message: 'Слишком много запросов, пожалуйста, попробуйте снова через 15 минут.'
 });
 
-// Ограничитель для чувствительных действий
 const sensitiveActionsLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 10,

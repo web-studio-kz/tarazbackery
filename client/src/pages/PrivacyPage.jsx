@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './StaticPage.module.css'; // Используем общие стили
+import styles from './StaticPage.module.css'; 
 import { useTranslation } from 'react-i18next';
 
 

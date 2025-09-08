@@ -1,25 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Основные брендовые цвета */
   --kfc-red: #e31837;
-
-  /* Текстовые цвета */
   --text-dark: #202020;
   --text-light: #ffffff;
 
-  /* Фоновые цвета */
-  --background-light: #f7f7f7; /* Основной фон сайта */
-  --background-white: #ffffff; /* Фон для карточек, кнопок */
-  --background-hover: #f0f0f0; /* Цвет фона при наведении */
-  
-  /* Цвета границ и разделителей */
+  --background-light: #f7f7f7; 
+  --background-white: #ffffff;
+  --background-hover: #f0f0f0;  
   --border-color: #e5e5e5;
   --border-hover-color: #dddddd;
 
-  /* Системные цвета (можно добавить) */
-  --color-success: #28a745; /* Зеленый для успеха */
-  --color-danger: #dc3545;  /* Красный для ошибок */
+  --color-success: #28a745;
+  --color-danger: #dc3545;
   --info-background: #f0f8ff;
   --warning-background: #fffbe6;
   --warning-border: #ffe58f;
@@ -35,8 +28,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: var(--background-light); /* Светлый фон для всего сайта */
-  color: var(--text-dark); /* Темный цвет текста по умолчанию */
+  background-color: var(--background-light);
+  color: var(--text-dark);
 }
 
 a {
@@ -53,14 +46,10 @@ button {
 }
 
 @media (max-width: 768px) {
-    /* Находим наш контейнер по классу, который мы добавили */
     .my-toast-container {
-      /* Переопределяем позицию */
-      top: 1em;    /* Отступ сверху */
-      right: 1em;  /* Отступ справа */
-      width: 90vw; /* Ширина на мобильных */
-      
-      /* Сбрасываем нижние позиционные свойства */
+      top: 1em;    
+      right: 1em;  
+      width: 90vw;       
       bottom: auto;
       left: auto;
     }

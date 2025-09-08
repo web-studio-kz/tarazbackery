@@ -29,7 +29,7 @@
     font-weight: 600;
     font-size: 1.1rem;
     margin: 0.5rem 0;
-    flex-grow: 1; /* Чтобы карточки в одной строке были одинаковой высоты */
+    flex-grow: 1; 
 }
 
 .price {

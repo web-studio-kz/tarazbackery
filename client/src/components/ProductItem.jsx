@@ -5,39 +5,31 @@ import { addItem, selectCartItems } from '../store/cartSlice'; // selectCartItem
 const ProductItem = ({ product }) => {
     const dispatch = useDispatch();
     const imageUrl = `http://localhost:5001/${product.imageUrl}`;
-
-    // 1. Получаем все товары из корзины с помощью селектора
     const cartItems = useSelector(selectCartItems);
-
-    // 2. Проверяем, есть ли ТЕКУЩИЙ продукт в корзине
     const isInCart = cartItems.some(item => item.id === product.id);
-
     const handleAddToCart = () => {
-        // Мы отправляем действие, даже если товар уже в корзине.
-        // Наша логика в cartSlice сама разберется: увеличить quantity или добавить новый.
         dispatch(addItem(product));
     };
 
-    // 3. Определяем стили для кнопки в зависимости от того, в корзине ли товар
     const buttonStyle = {
         padding: '8px 16px',
         border: 'none',
         borderRadius: '5px',
         cursor: 'pointer',
         fontWeight: 'bold',
-        transition: 'background-color 0.3s, color 0.3s', // Плавный переход цвета
+        transition: 'background-color 0.3s, color 0.3s', 
     };
 
     const inCartStyle = {
         ...buttonStyle,
-        backgroundColor: '#e31837', // Красный цвет KFC
+        backgroundColor: '#e31837',
         color: 'white',
-        cursor: 'default', // Можно сделать курсор обычным, показывая, что действие выполнено
+        cursor: 'default', 
     };
 
     const notInCartStyle = {
         ...buttonStyle,
-        backgroundColor: '#f0f0f0', // Стандартный серый цвет
+        backgroundColor: '#f0f0f0', 
         color: 'black',
     };
 
@@ -48,9 +40,7 @@ const ProductItem = ({ product }) => {
             <p>Цена: <strong>{product.price} тг.</strong></p>
             <button
                 onClick={handleAddToCart}
-                // Отключаем кнопку, если товар уже в корзине, чтобы избежать повторных кликов
                 disabled={isInCart}
-                // Применяем стили в зависимости от состояния
                 style={isInCart ? inCartStyle : notInCartStyle}
             >
                 {isInCart ? 'В корзине' : 'В корзину'}

@@ -7,7 +7,6 @@ const categoryIdToKeyMap = {
     2: 'category_baskets',
     3: 'category_drinks',
     4: 'category_cheesy',
-    // новые категории
 };
 
 const CategoryBar = ({ categories, selectedCategory, onSelectCategory }) => {

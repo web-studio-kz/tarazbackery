@@ -1,12 +1,9 @@
-// server/controllers/productController.js
-
 const { Product, Category } = require('../models');
 const ApiError = require('../error/ApiError');
 
 class ProductController {
     async create(req, res, next) {
         try {
-            // Логика создания продукта будет сложнее из-за картинок, пока оставим так
             const { name, price, description, categoryId } = req.body;
             const product = await Product.create({ name, price, description, categoryId, imageUrl: 'default.jpg' });
             return res.json(product);
@@ -20,12 +17,11 @@ class ProductController {
         page = page || 1;
         limit = limit || 9;
         let offset = page * limit - limit;
-    
-        // --- ДОБАВЛЯЕМ ЯВНОЕ УКАЗАНИЕ ПОЛЕЙ ---
+
         const options = {
             limit,
             offset,
-            attributes: ['id', 'name', 'price', 'imageUrl', 'categoryId'] // Убеждаемся, что price здесь есть
+            attributes: ['id', 'name', 'price', 'imageUrl', 'categoryId'] 
         };
     
         if (categoryId) {
@@ -41,7 +37,6 @@ class ProductController {
         const { id } = req.params;
         const product = await Product.findOne({
             where: { id },
-            // Включаем информацию о категории в ответ
             include: [{ model: Category, as: 'Category' }]
         });
         return res.json(product);

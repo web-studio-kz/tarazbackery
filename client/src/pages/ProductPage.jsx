@@ -1,7 +1,7 @@
 // src/pages/ProductPage.jsx
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // useParams для получения id из URL
+import { useParams, useNavigate } from 'react-router-dom'; 
 import { fetchOneProduct } from '../http/productAPI';
 import { useTranslation } from 'react-i18next';
 import Spinner from '../components/ui/Spinner/Spinner';
@@ -27,10 +27,10 @@ const ProductPage = () => {
             .catch(e => {
                 console.error(e);
                 toast.error("Товар не найден");
-                navigate('/'); // Если товар не найден, уводим на главную
+                navigate('/'); 
             })
             .finally(() => setLoading(false));
-    }, [id, navigate]); // Эффект будет перезапускаться, если id в URL изменится
+    }, [id, navigate]); 
 
     const handleAddToCart = () => {
         dispatch(addItem(product));
@@ -46,7 +46,7 @@ const ProductPage = () => {
     }
 
     if (!product) {
-        return <h2>Товар не найден</h2>; // На случай, если что-то пошло не так
+        return <h2>Товар не найден</h2>; 
     }
 
     return (
@@ -54,7 +54,7 @@ const ProductPage = () => {
             <div className={styles.imageColumn}>
                 <img 
                     src={`${import.meta.env.VITE_API_URL}${product.imageUrl}`} 
-                    alt={t(`products.${product.id}.name`)} // 3. Переводим alt-текст
+                    alt={t(`products.${product.id}.name`)} 
                 />
             </div>
             <div className={styles.infoColumn}>
@@ -62,15 +62,15 @@ const ProductPage = () => {
                 <p className={styles.description}>{t(`products.${product.id}.description`)}</p>
                 <div className={styles.footer}>
                     
-                    <div className={styles.priceContainer}> {/* Добавляем обертку */}
+                    <div className={styles.priceContainer}> 
                     <span className={styles.price}>{t('price_label')} {product.price} тг.</span>
                     </div>
                     <button 
                         onClick={handleAddToCart} 
-                        className={isInCart ? styles.inCartButton : styles.addButton} // Условный класс
-                        disabled={isInCart} // Блокируем, если в корзине
+                        className={isInCart ? styles.inCartButton : styles.addButton} 
+                        disabled={isInCart} 
                     >
-                        {isInCart ? t('in_cart') : t('add_to_cart')} {/* Условный текст */}
+                        {isInCart ? t('in_cart') : t('add_to_cart')}
                     </button>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const YandexStrategy = require('passport-yandex').Strategy; // <-- Это есть
+const YandexStrategy = require('passport-yandex').Strategy;
 const { User } = require('../models');
 
 passport.use(

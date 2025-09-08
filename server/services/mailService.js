@@ -1,5 +1,3 @@
-// server/services/mailService.js
-
 const nodemailer = require('nodemailer');
 
 const DELIVERY_COST = 1000;

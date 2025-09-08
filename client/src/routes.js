@@ -1,5 +1,3 @@
-// src/routes.js (НОВАЯ, ПРАВИЛЬНАЯ ВЕРСИЯ)
-
 import AuthPage from "./pages/AuthPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import MenuPage from "./pages/MenuPage.jsx";
@@ -47,7 +45,7 @@ export const publicRoutes = [
         Component: ProductPage
     },
     {
-        path: GOOGLE_CALLBACK_ROUTE, // ДОБАВЛЯЕМ: это техническая страница для обработки токена
+        path: GOOGLE_CALLBACK_ROUTE,
         Component: AuthCallbackPage
     },
     {

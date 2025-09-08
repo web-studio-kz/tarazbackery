@@ -1,6 +1,4 @@
-// server/controllers/categoryController.js
-
-const { Category } = require('../models'); // Импортируем модель
+const { Category } = require('../models'); 
 const ApiError = require('../error/ApiError');
 
 class CategoryController {

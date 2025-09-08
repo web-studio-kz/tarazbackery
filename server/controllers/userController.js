@@ -42,9 +42,7 @@ class UserController {
         return res.json({ token });
     }
 
-    // Проверка авторизации пользователя по токену
     async check(req, res, next) {
-        // Данные о пользователе (id, email, role) добавляются в req.user нашим middleware
         const token = generateJwt(req.user.id, req.user.email, req.user.role);
         return res.json({ token });
     }

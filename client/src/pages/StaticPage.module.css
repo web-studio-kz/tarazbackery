@@ -3,7 +3,7 @@
 }
 .container {
     max-width: 800px;
-    margin: 0 auto; /* <-- ВОТ ЭТО РЕШЕНИЕ. Центрирует блок по горизонтали. */
+    margin: 0 auto; 
     background-color: var(--background-white);
     padding: 30px 40px;
     border-radius: 12px;

@@ -22,19 +22,12 @@ const CartPage = () => {
     const { t } = useTranslation(['cart', 'product', 'common']);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
-    // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-
-    // 1. Получаем из Redux ТОЛЬКО стоимость товаров
     const itemsTotal = useSelector(selectCartTotalPrice); 
     const cartItems = useSelector(selectCartItems);
     const { isAuth } = useSelector(state => state.user);
-
-    // 2. Добавляем состояние для метода доставки и задаем константу
-    const [deliveryMethod, setDeliveryMethod] = useState('PICKUP'); // 'PICKUP' по умолчанию
+    const [deliveryMethod, setDeliveryMethod] = useState('PICKUP'); 
     const DELIVERY_COST = 1000;
 
-    // 3. Динамически рассчитываем финальную стоимость
     const finalTotal = deliveryMethod === 'DELIVERY' ? itemsTotal + DELIVERY_COST : itemsTotal;
 
     const [mapModalActive, setMapModalActive] = useState(false);
@@ -46,7 +39,6 @@ const CartPage = () => {
         setIsAddressValid(addressData.isValid);
     };
     
-    // 4. Главная кнопка теперь открывает модальное окно с картой или сразу отправляет заказ
     const handleProceedToCheckout = () => {
         if (!isAuth) {
             toast.warn(t('common:toasts.login_required'));
@@ -55,17 +47,15 @@ const CartPage = () => {
         
         if (deliveryMethod === 'DELIVERY') {
             setMapModalActive(true);
-        } else { // deliveryMethod === 'PICKUP'
             handleFinalizeOrder();
         }
     };
     
-    // 5. Функция отправки заказа теперь использует правильную цену и метод
     const handleFinalizeOrder = async () => {
         let orderData = {
             items: cartItems,
-            totalPrice: finalTotal, // <-- Отправляем финальную стоимость
-            deliveryType: deliveryMethod, // <-- Отправляем выбранный метод
+            totalPrice: finalTotal, 
+            deliveryType: deliveryMethod, 
         };
 
         if (deliveryMethod === 'DELIVERY') {
@@ -82,12 +72,10 @@ const CartPage = () => {
             setMapModalActive(false);
             navigate(PROFILE_ROUTE);
         } catch (e) {
-            // ... (обработка ошибок)
             if (e.response && e.response.status === 401) { /*...*/ } else { /*...*/ }
         }
     };
 
-    // --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
     if (cartItems.length === 0) { 
         return (
@@ -129,7 +117,6 @@ const CartPage = () => {
                 ))}
             </div>
 
-            {/* --- 6. НОВЫЙ БЛОК ВЫБОРА ДОСТАВКИ --- */}
             <div className={styles.deliveryOptions}>
                 <h2>{t('cart:delivery_method_title')}</h2>
                 <div className={styles.methodButtons}>
@@ -149,7 +136,6 @@ const CartPage = () => {
             </div>
 
             <div className={styles.totalSection}>
-                {/* 7. Отображаем финальную стоимость */}
                 <strong className={styles.totalPrice}>{t('common:total')}: {finalTotal} тг.</strong>
                 <button onClick={handleProceedToCheckout} className={styles.orderButton}>
                     {t('go_to_checkout')}
@@ -159,7 +145,6 @@ const CartPage = () => {
             <Modal active={mapModalActive} setActive={setMapModalActive}>
                 <div className={styles.deliverySection}>
                     <h2>{t('delivery_address_title')}</h2>
-                    {/* <p>{t('delivery_address_subtitle')}</p> */}
                     <MapPicker onAddressSelect={handleAddressSelect} />
                     {deliveryAddress && (
                         <div className={isAddressValid ? styles.addressInfo : styles.addressError}>

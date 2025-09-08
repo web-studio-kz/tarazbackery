@@ -1,9 +1,7 @@
-// src/App.jsx (ФИНАЛЬНАЯ ВЕРСИЯ С УВЕДОМЛЕНИЕМ)
-
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify'; // <-- 1. ИМПОРТИРУЕМ toast
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AppRouter from './components/AppRouter';

@@ -4,6 +4,6 @@ const productController = require('../controllers/productController');
 
 router.post('/', productController.create);
 router.get('/', productController.getAll);
-router.get('/:id', productController.getOne); // Этот роут должен идти после '/'
+router.get('/:id', productController.getOne);
 
 module.exports = router;

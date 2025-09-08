@@ -16,9 +16,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.set('trust proxy', 1);
 
-// --- ПОРЯДОК MIDDLEWARE ---
 
-// 1. CORS - самый первый
+// 1 CORS
 const whitelist = [process.env.CLIENT_URL, process.env.LOCAL_URL];
 app.use(cors({
     origin: function (origin, callback) {
@@ -31,14 +30,14 @@ app.use(cors({
     credentials: true
 }));
 
-// 2. Парсеры
+// 2 Парсеры
 app.use(express.json());
 
-// 3. Раздача статики
+// 3 Раздача статики
 app.use(express.static(path.resolve(__dirname, 'static')));
 
-// 4. ОБЩИЙ ОГРАНИЧИТЕЛЬ ЗАПРОСОВ
-app.use('/api', generalLimiter); // Применяем ко всем роутам, начинающимся с /api
+// 4 Общий ограничитель запросов
+app.use('/api', generalLimiter); 
 
 // 5. Инициализация Passport
 app.use(passport.initialize());

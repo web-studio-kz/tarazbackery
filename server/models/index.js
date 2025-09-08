@@ -6,15 +6,7 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const db = {};
-
-// Важно: мы не создаем нового подключения здесь!
-// Вместо этого мы будем импортировать уже созданное подключение из db/index.js
-// и передавать его при инициализации моделей.
-// Этот файл теперь отвечает только за сборку моделей из папки.
-
-// Этот код был оставлен для совместимости с sequelize-cli,
-// но в нашем приложении он не используется для подключения.
-const sequelize = require('../db'); // <-- Вот ключевое изменение! Мы берем наш экземпляр sequelize
+const sequelize = require('../db'); 
 
 fs
   .readdirSync(__dirname)
