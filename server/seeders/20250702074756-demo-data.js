@@ -80,6 +80,15 @@ module.exports = {
         description: 'Миниральная вода без газа',
         price: 500,
         imageUrl: 'images/products/asu.jpg',
+        categoryId: drinkCategoryId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Френдс бокс 36 острых крылышек',
+        description: '36 острых крылышек, баскет картофель фри',
+        price: 13000,
+        imageUrl: 'images/products/36winds.jpg',
         categoryId: basketCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
