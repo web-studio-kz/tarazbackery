@@ -18,7 +18,7 @@ const Footer = () => {
             <div className={styles.container}>
                 <div className={styles.topSection}>
                     <div className={styles.logoSection}>
-                        <Link to="/" className={styles.logo}>KFC</Link>
+                        <Link to="/" className={styles.logo}>Main</Link>
                         <div className={styles.socialIcons}>
                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>

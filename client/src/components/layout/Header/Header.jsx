@@ -32,7 +32,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <Link to={MENU_ROUTE} className={styles.logo}>
-                KFC
+                Main
             </Link>
 
             <div className={styles.nav}>
