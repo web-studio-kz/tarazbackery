@@ -79,7 +79,7 @@ module.exports = {
         name: 'Asu',
         description: 'Миниральная вода без газа',
         price: 500,
-        imageUrl: 'images/products/asu.jpg',
+        imageUrl: 'images/products/asu.png',
         categoryId: drinkCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()

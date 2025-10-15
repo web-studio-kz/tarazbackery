@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from './CartPage.module.css';
 import { useTranslation } from 'react-i18next';
-
+import { FiTrash2 } from 'react-icons/fi';
 import {
     clearCart,
     selectCartItems,
     selectCartTotalPrice,
     incrementItem,
-    decrementItem
+    decrementItem,
+    removeItem
 } from '../store/cartSlice';
 import { setUser, setIsAuth } from '../store/userSlice';
 import { createOrder } from '../http/orderAPI';
@@ -104,15 +105,29 @@ const CartPage = () => {
                             <span className={styles.itemName}>
                                 {t(`product:products.${item.id}.name`)}
                             </span>
-                            <div className={styles.itemControls}>
-                                <button onClick={() => dispatch(decrementItem(item.id))}>-</button>
-                                <span>{item.quantity}</span>
-                                <button onClick={() => dispatch(incrementItem(item.id))}>+</button>
+                            <div className={ styles.controls}>
+                                <div className={styles.itemControls}>
+                                    <button onClick={() => dispatch(decrementItem(item.id))}>-</button>
+                                    <span>{item.quantity}</span>
+                                    <button onClick={() => dispatch(incrementItem(item.id))}
+                                    disabled = {item.quantity >= 10}    
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                                <span className={styles.itemPrice}>
+                                    {(item.price * item.quantity)} тг.
+                                </span>
+                                <button 
+                                    onClick={() => dispatch(removeItem(item.id))} 
+                                    className={styles.removeButton}
+                                >
+                                    <FiTrash2 />
+                                </button>
                             </div>
-                        </div>
-                        <span className={styles.itemPrice}>
-                            {(item.price * item.quantity)} тг.
-                        </span>
+                            
+                        </div>                        
+                        
                     </div>
                 ))}
             </div>
