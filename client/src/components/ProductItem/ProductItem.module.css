@@ -49,14 +49,17 @@
 
 .button {
     width: 100%;
-    padding: 10px;
+    padding: 10px 5px;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 8px;
-    border: 2px solid var(--kfc-red);
-    background-color: white;
-    color: var(--kfc-red);
     cursor: pointer;
     transition: all 0.2s ease;
+    display: block;
+    box-sizing: border-box; 
+    background-color: transparent;
+    border: 2px solid var(--kfc-red);
+    color: var(--kfc-red);
 }
 
 .button:hover {
@@ -65,7 +68,14 @@
 }
 
 .inCartButton {
+    composes: button; 
     background-color: var(--kfc-red);
     color: white;
     cursor: default;
+    border: 2px solid var(--kfc-red); 
+}
+
+.inCartButton:hover {
+    background-color: var(--kfc-red);
+    color: white;
 }
