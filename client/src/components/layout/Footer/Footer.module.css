@@ -95,7 +95,8 @@
     .footer {
         padding-bottom: 80px;
         min-height: 150px; 
-        ontain: yield; 
+        min-height: 180px; 
+        contain: layout; 
     }
 }
 

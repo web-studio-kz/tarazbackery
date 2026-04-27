@@ -6,6 +6,8 @@
     flex-wrap: nowrap;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    min-height: 46px; 
+    align-items: center;
 }
 
 .button {
