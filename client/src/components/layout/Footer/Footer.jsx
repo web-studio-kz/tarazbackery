@@ -20,9 +20,15 @@ const Footer = () => {
                     <div className={styles.logoSection}>
                         <Link to="/" className={styles.logo}>Main</Link>
                         <div className={styles.socialIcons}>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-                            <a href="https://vk.com" target="_blank" rel="noopener noreferrer"><FaVk /></a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Инстаграм">
+                                <FaInstagram />
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Фейсбук">
+                                <FaFacebook />
+                            </a>
+                            <a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Вконтакте">
+                                <FaVk />
+                            </a>
                         </div>
                     </div>
 

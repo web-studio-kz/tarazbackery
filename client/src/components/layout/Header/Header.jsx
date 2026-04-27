@@ -38,21 +38,19 @@ const Header = () => {
             <div className={styles.nav}>
                 <LanguageSwitcher />
 
-                <Link to={CART_ROUTE} className={styles.iconButton}>
+                <Link to={CART_ROUTE} className={styles.iconButton} aria-label="Перейти в корзину">
                     <div className={styles.cartIconWrapper}>
                         <FiShoppingCart />
-                        {totalQuantity > 0 && (
-                            <span className={styles.cartBadge}>{totalQuantity}</span>
-                        )}
+                        {totalQuantity > 0 && <span className={styles.cartBadge}>{totalQuantity}</span>}
                     </div>
                 </Link>
 
-                <button onClick={handleUserIconClick} className={styles.iconButton}>
+                <button onClick={handleUserIconClick} className={styles.iconButton} aria-label="Личный кабинет">
                     <FiUser />
                 </button>
 
                 {isAuth && (
-                    <button onClick={logout} className={styles.iconButton} title="Выйти">
+                    <button onClick={logout} className={styles.iconButton} aria-label="Выйти из аккаунта">
                         <FiLogOut />
                     </button>
                 )}

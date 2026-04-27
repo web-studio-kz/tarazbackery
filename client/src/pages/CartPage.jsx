@@ -121,6 +121,7 @@ const CartPage = () => {
                                 <button 
                                     onClick={() => dispatch(removeItem(item.id))} 
                                     className={styles.removeButton}
+                                    aria-label="Удалить товар из корзины" // <-- Добавить это
                                 >
                                     <FiTrash2 />
                                 </button>

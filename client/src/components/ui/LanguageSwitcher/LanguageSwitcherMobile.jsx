@@ -13,8 +13,7 @@ const LanguageSwitcherMobile = () => {
     };
 
     return (
-        // Весь компонент теперь - одна кнопка
-        <button onClick={toggleLanguage} className={styles.toggleButton}>
+        <button onClick={toggleLanguage} className={styles.toggleButton} aria-label="Сменить язык">
             {currentLanguage.toUpperCase()}
         </button>
     );

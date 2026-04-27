@@ -52,7 +52,7 @@ const BottomNav = () => {
                 <span className={styles.text}>{t('menu')}</span>
             </NavLink>
 
-            <div className={styles.navLink} onClick={toggleLanguage}>
+            <div className={styles.navLink} onClick={toggleLanguage} role="button" aria-label="Сменить язык">
                 <FiGlobe className={styles.icon} />
                 <span className={styles.text}>{i18n.language.toUpperCase()}</span>
             </div>
@@ -69,7 +69,7 @@ const BottomNav = () => {
             </NavLink>
 
             {isOnProfilePage && isAuth ? (
-                <div className={styles.navLink} onClick={logout}>
+                <div className={styles.navLink} onClick={logout} role="button" aria-label="Выйти">
                     <FiLogOut className={styles.icon} />
                     <span className={styles.text}>{t('logout')}</span>
                 </div>
@@ -77,10 +77,12 @@ const BottomNav = () => {
                 <div 
                     className={isOnProfilePage ? `${styles.navLink} ${styles.activeLink}` : styles.navLink} 
                     onClick={handleProfileClick}
+                    role="button"
+                    aria-label="Профиль"
                 >
                     <FiUser className={styles.icon} />
                     <span className={styles.text}>{t('profile')}</span>
-                </div>
+                </div>  
             )}
         </nav>
     );
