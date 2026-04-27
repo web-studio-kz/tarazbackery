@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-
 :root {
   --kfc-red: #e31837;
-  --text-dark: #202020;
+  --text-dark: #121212;
   --text-light: #ffffff;
-
+  --text-gray: #595959; 
   --background-light: #f7f7f7; 
   --background-white: #ffffff;
   --background-hover: #f0f0f0;  
