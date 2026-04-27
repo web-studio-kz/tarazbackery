@@ -25,7 +25,7 @@ module.exports = {
         name: 'Шефбургер Острый',
         description: 'Оригинальное куриное филе в острой панировке, сочные листья салата, помидоры и соус в пшеничной булочке.',
         price: 1550,
-        imageUrl: 'images/products/shef_ost.png', // Пути будем использовать относительные
+        imageUrl: 'images/products/shef_ost.webp', // Пути будем использовать относительные
         categoryId: burgerCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -34,7 +34,7 @@ module.exports = {
         name: 'Шефбургер Де Люкс',
         description: 'Оригинальное куриное филе в оригинальной панировке, сочные листья салата, помидоры и соус в пшеничной булочке.',
         price: 1650,
-        imageUrl: 'images/products/shef_delux.png',
+        imageUrl: 'images/products/shef_delux.webp',
         categoryId: burgerCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -43,7 +43,7 @@ module.exports = {
         name: 'Баскет 16 крыльев',
         description: '16 острых и сочных куриных крылышек в хрустящей панировке Hot&Spicy.',
         price: 4700,
-        imageUrl: 'images/products/basket_16.png',
+        imageUrl: 'images/products/basket_16.webp',
         categoryId: basketCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -52,7 +52,7 @@ module.exports = {
         name: 'Чизбургер',
         description: '2 стрипса оригинальных, лук, сыр чеддер, маринованные огурцы, горчичный соус, кетчуп, на пшеничной булочке с кунжутом',
         price: 1700,
-        imageUrl: 'images/products/cheeseburger1.png',
+        imageUrl: 'images/products/cheeseburger1.webp',
         categoryId: burgerCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -61,7 +61,7 @@ module.exports = {
         name: 'Pepsi',
         description: 'Газированный прохладительный напиток',
         price: 500,
-        imageUrl: 'images/products/pepsi.png',
+        imageUrl: 'images/products/pepsi.webp',
         categoryId: drinkCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -70,7 +70,7 @@ module.exports = {
         name: 'Piala Ананас',
         description: 'Прохладительный написток со вкусом ананаса',
         price: 500,
-        imageUrl: 'images/products/icetea.png',
+        imageUrl: 'images/products/icetea.webp',
         categoryId: drinkCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -79,7 +79,7 @@ module.exports = {
         name: 'Asu',
         description: 'Миниральная вода без газа',
         price: 500,
-        imageUrl: 'images/products/asu.png',
+        imageUrl: 'images/products/asu.webp',
         categoryId: drinkCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -88,7 +88,7 @@ module.exports = {
         name: 'Френдс бокс 36 острых крылышек',
         description: '36 острых крылышек, баскет картофель фри',
         price: 13000,
-        imageUrl: 'images/products/36winds.png',
+        imageUrl: 'images/products/36winds.webp',
         categoryId: basketCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -97,7 +97,7 @@ module.exports = {
         name: 'Дабл Шефбургер',
         description: '2 филе в уникальной панировке, томаты, салат айсберг, соус Цезарь, булочка и ломтик сыра',
         price: 3000,
-        imageUrl: 'images/products/doubleburger.png',
+        imageUrl: 'images/products/doubleburger.webp',
         categoryId: burgerCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -106,7 +106,7 @@ module.exports = {
         name: 'Майо кранчер бургер',
         description: 'Оригинальный стрипс, маринованные огурцы, хашбраун, салат айсберг, ломтик сыра, майонез на пшеничной булочке',
         price: 2500,
-        imageUrl: 'images/products/mayoburger.png',
+        imageUrl: 'images/products/mayoburger.webp',
         categoryId: burgerCategoryId,
         createdAt: new Date(),
         updatedAt: new Date()
