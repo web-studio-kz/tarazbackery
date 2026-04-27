@@ -8,7 +8,7 @@ import { PRODUCT_ROUTE } from '../../utils/consts';
 import { useTranslation } from 'react-i18next';
 
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, index }) => {
     const dispatch = useDispatch();
     const imageUrl = `${import.meta.env.VITE_API_URL}${product.imageUrl}`;
     const cartItems = useSelector(selectCartItems);
@@ -26,14 +26,15 @@ const ProductItem = ({ product }) => {
         <div className={styles.card}>
             <Link to={PRODUCT_ROUTE + '/' + product.id} className={styles.linkWrapper}>
                 <div className={styles.imageContainer}>
-                    <img
-                        src={imageUrl} 
-                        alt={product.name} 
-                        className={styles.image} 
-                        width="250"     
-                        height="180"    
-                        loading="lazy"
-                    />
+                <img
+                    src={imageUrl} 
+                    alt={product.name} 
+                    className={styles.image} 
+                    width="250"     
+                    height="180"    
+                    loading={index < 2 ? "eager" : "lazy"}
+                    fetchpriority={index === 0 ? "high" : "auto"}
+                />  
                 </div>
                 <h4 className={styles.title}>{t(`products.${product.id}.name`)}</h4>
                 <p className={styles.price}>{t('price_label')} <strong>{product.price} тг.</strong></p>

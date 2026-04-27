@@ -1,6 +1,9 @@
 /* src/components/layout/Header/Header.module.css (ФИНАЛЬНАЯ ИСПРАВЛЕННАЯ ВЕРСИЯ) */
 
 .header {
+    height: 64px;
+    min-height: 64px;
+    overflow: hidden;
     display: none;
     justify-content: space-between;
     align-items: center;

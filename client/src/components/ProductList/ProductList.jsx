@@ -5,8 +5,8 @@ import styles from './ProductList.module.css';
 const ProductList = ({ products }) => {
     return (
         <div className={styles.list}>
-            {products.map(product => (
-                <ProductItem key={product.id} product={product} />
+            {products.map((product, index) => (
+                <ProductItem key={product.id} product={product} index={index}/>
             ))}
         </div>
     );
