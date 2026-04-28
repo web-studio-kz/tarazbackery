@@ -28,7 +28,9 @@
 
 .image {
     width: 100%;
+    max-width: 250px;
     height: 100%;
+    aspect-ratio: 250 / 180;
     object-fit: contain;
     display: block;
 }
