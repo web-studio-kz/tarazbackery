@@ -18,7 +18,7 @@
   --success-color: #28a745;
 }
 
-body {
+/* body {
   margin: 0;
   font-family: 'Montserrat', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
@@ -29,13 +29,21 @@ body {
   color: var(--text-dark);
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    font-display: swap;
-    src: local('Arial'); /* Браузер сначала использует Arial, но подгонит его */
-    unicode-range: U+000-5FF;
+} */
+body {
+    margin: 0;
+    /* Montserrat — главный, остальное — запас на случай сбоя */
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    text-rendering: optimizeSpeed; /* Оставляем для скорости */
+    
+    /* ХАК для CLS: всегда держим полосу прокрутки, чтобы контент не дергался */
+    overflow-y: scroll; 
 }
 
 a {
