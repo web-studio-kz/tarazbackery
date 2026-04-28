@@ -9,7 +9,8 @@
     max-width: 1240px; 
     margin: 0 auto;    
     padding: 20px 15px; 
-    flex-grow: 1;       
+    flex-grow: 1;  
+    min-height: 70vh;     
   }
   
   
