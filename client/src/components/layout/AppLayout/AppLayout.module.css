@@ -8,7 +8,7 @@
     width: 100%;
     max-width: 1240px; 
     margin: 0 auto;    
-    padding: 20px 15px; 
+    padding: 0 15px 0 15px; 
     flex-grow: 1;  
     min-height: 70vh;     
   }
@@ -16,6 +16,11 @@
   
   @media (max-width: 768px) {
     .container {
-      padding: 15px 10px 80px 10px;
+        /* Убираем боковые отступы у главного контейнера на мобилках, 
+           чтобы Hero мог встать вплотную к краям */
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 15px;
     }
   }

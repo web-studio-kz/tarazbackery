@@ -1,3 +1,4 @@
+import HomePage from "./pages/HomePage.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import MenuPage from "./pages/MenuPage.jsx";
@@ -12,6 +13,7 @@ import FaqPage from './pages/FaqPage';
 import ContactsPage from './pages/ContactsPage';
 
 import {
+    HOME_ROUTE,
     LOGIN_ROUTE,
     CART_ROUTE,
     MENU_ROUTE,
@@ -28,6 +30,10 @@ import {
 
 
 export const publicRoutes = [
+    {
+        path: HOME_ROUTE,
+        Component: HomePage
+    },
     {
         path: MENU_ROUTE,
         Component: MenuPage

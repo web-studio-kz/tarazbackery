@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 import styles from './BottomNav.module.css';
-import { MENU_ROUTE, CART_ROUTE, PROFILE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
+import { HOME_ROUTE, MENU_ROUTE, CART_ROUTE, PROFILE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import { selectCartTotalQuantity } from '../../../store/cartSlice';
 import { setUser, setIsAuth } from '../../../store/userSlice';
 
@@ -47,9 +47,9 @@ const BottomNav = () => {
     return (
         <nav className={styles.navBar}>
             {/* Меню */}
-            <NavLink to={MENU_ROUTE} className={getNavLinkClass} end>
+            <NavLink to={HOME_ROUTE} className={getNavLinkClass} end>
                 <FiHome className={styles.icon} />
-                <span className={styles.text}>{t('menu')}</span>
+                <span className={styles.text}>{t('home')}</span>
             </NavLink>
 
             <div className={styles.navLink} onClick={toggleLanguage} role="button" aria-label="Сменить язык">
@@ -69,20 +69,19 @@ const BottomNav = () => {
             </NavLink>
 
             {isOnProfilePage && isAuth ? (
-                <div className={styles.navLink} onClick={logout} role="button" aria-label="Выйти">
+                <div className={styles.navLink} onClick={logout} role="button">
                     <FiLogOut className={styles.icon} />
                     <span className={styles.text}>{t('logout')}</span>
                 </div>
             ) : (
-                <div 
-                    className={isOnProfilePage ? `${styles.navLink} ${styles.activeLink}` : styles.navLink} 
-                    onClick={handleProfileClick}
-                    role="button"
-                    aria-label="Профиль"
+                /* Заменяем <div> на <NavLink> */
+                <NavLink 
+                    to={isAuth ? PROFILE_ROUTE : LOGIN_ROUTE} 
+                    className={getNavLinkClass}
                 >
                     <FiUser className={styles.icon} />
                     <span className={styles.text}>{t('profile')}</span>
-                </div>  
+                </NavLink>
             )}
         </nav>
     );

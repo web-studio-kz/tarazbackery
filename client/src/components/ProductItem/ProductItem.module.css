@@ -54,30 +54,37 @@
     padding: 10px 5px;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 1px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: block;
     box-sizing: border-box; 
-    background-color: transparent;
-    border: 2px solid var(--kfc-red);
-    color: var(--kfc-red);
+    color: var(--text-dark);
+    border: none;
+    background-color: var(--background-dark);
+
 }
 
 .button:hover {
     background-color: var(--kfc-red);
-    color: white;
+
+    color: var(--text-dark);
+    border-radius: 1px;
+
 }
 
 .inCartButton {
     composes: button; 
     background-color: var(--kfc-red);
-    color: white;
+    color: var(--text-light-gray);
+
     cursor: default;
     border: 2px solid var(--kfc-red); 
 }
 
 .inCartButton:hover {
     background-color: var(--kfc-red);
-    color: white;
+    color: var(--text-light-gray);
+
+
 }

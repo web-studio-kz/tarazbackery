@@ -1,19 +1,18 @@
 .switcher {
     display: flex;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--background-dark);
     border-radius: 8px;
     padding: 4px; /* Немного изменим паддинг */
     height: 40px; /* <-- УСТАНАВЛИВАЕМ ТУ ЖЕ ВЫСОТУ */
     box-sizing: border-box; /* Важно, чтобы padding не увеличивал высоту */
     position: relative; /* Включаем возможность позиционирования */
-    top: -7px;
 }
 
 .switcher button {
     background: none;
     border: none;
-    color: white;
+    color: var(--text-dark);
     padding: 4px 10px;
     font-weight: 500;
     cursor: pointer;
@@ -28,7 +27,7 @@
 }
 
 .switcher button.active {
-    background-color: white;
+    background-color: var(--text-dark);
     color: var(--kfc-red);
 }
 

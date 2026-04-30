@@ -16,7 +16,7 @@ i18n
     ns: [
       "about", "common", "header", "bottomNav", "menu", "product", 
       "cart", "auth", "profile", "footer", "terms", 
-      "privacy", "faq", "contacts"
+      "privacy", "faq", "contacts", "home"
     ],
     defaultNS: "common",    
     detection: {      

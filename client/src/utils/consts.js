@@ -1,4 +1,5 @@
-export const MENU_ROUTE = '/'
+export const HOME_ROUTE = '/'
+export const MENU_ROUTE = '/menu'
 export const RESTAURANTS_ROUTE = '/restaurants'
 export const CART_ROUTE = '/cart';
 export const LOGIN_ROUTE = '/login';
@@ -15,3 +16,6 @@ export const PRIVACY_ROUTE = '/privacy';
 export const FAQ_ROUTE = '/faq';
 export const CONTACTS_ROUTE = '/contacts';
 export const FEEDBACK_ROUTE = '/feedback';
+export const INSTAGRAM_URL = 'https://instagram.com/kfc_taraz';
+export const FACEBOOK_URL = 'https://facebook.com/kfc_taraz';
+export const VK_URL = 'https://vk.com/kfc_taraz';

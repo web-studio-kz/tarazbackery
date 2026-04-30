@@ -4,11 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import { selectCartTotalQuantity } from '../../../store/cartSlice';
 import { setIsAuth, setUser } from '../../../store/userSlice';
-import { MENU_ROUTE, CART_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { HOME_ROUTE, MENU_ROUTE, CART_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import LanguageSwitcher from '../../ui/LanguageSwitcher/LanguageSwitcher';
 import { FiShoppingCart, FiUser, FiLogOut } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
+    const { t } = useTranslation('header');
     const { isAuth } = useSelector(state => state.user);
     const totalQuantity = useSelector(selectCartTotalQuantity);
     const navigate = useNavigate();
@@ -31,26 +33,26 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <Link to={MENU_ROUTE} className={styles.logo}>
-                Main
+            <Link to={HOME_ROUTE} className={styles.logo}>
+                Home
             </Link>
 
             <div className={styles.nav}>
                 <LanguageSwitcher />
 
-                <Link to={CART_ROUTE} className={styles.iconButton} aria-label="Перейти в корзину">
+                <Link to={CART_ROUTE} className={styles.iconButton} aria-label="Перейти в корзину" title={t('tooltip_cart')}>
                     <div className={styles.cartIconWrapper}>
                         <FiShoppingCart />
                         {totalQuantity > 0 && <span className={styles.cartBadge}>{totalQuantity}</span>}
                     </div>
                 </Link>
 
-                <button onClick={handleUserIconClick} className={styles.iconButton} aria-label="Личный кабинет">
+                <button onClick={handleUserIconClick} className={styles.iconButton} aria-label="Личный кабинет" title={t('tooltip_profile')}>
                     <FiUser />
                 </button>
 
                 {isAuth && (
-                    <button onClick={logout} className={styles.iconButton} aria-label="Выйти из аккаунта">
+                    <button onClick={logout} className={styles.iconButton} aria-label="Выйти из аккаунта" title={t('tooltip_logout')}>
                         <FiLogOut />
                     </button>
                 )}

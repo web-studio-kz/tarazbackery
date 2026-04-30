@@ -1,5 +1,8 @@
 {
     "cart": "Корзина",
     "profile": "Профиль",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "tooltip_cart": "Перейти в корзину",
+    "tooltip_profile": "Личный кабинет",
+    "tooltip_logout": "Выйти из системы"
   }

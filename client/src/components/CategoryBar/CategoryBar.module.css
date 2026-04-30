@@ -12,8 +12,8 @@
 
 .button {
     padding: 8px 16px;
-    border: 1px solid var(--border-color);
-    background-color: var(--background-white);
+    border: none;
+    background-color: var(--kfc-red);
     border-radius: 20px;
     cursor: pointer;
     font-weight: 500;
@@ -21,7 +21,7 @@
 }
 
 .button:hover {
-    color: var(--text-light);
+    color: var(--text-light-gray);
     background-color: var(--kfc-red);
     border-color: var(--border-hover-color);
 }
@@ -29,6 +29,6 @@
 .activeButton {
     composes: button; 
     background-color: var(--kfc-red);
-    color: var(--text-light);
+    color: var(--text-light-gray);
     border-color: var(--kfc-red);
 }
