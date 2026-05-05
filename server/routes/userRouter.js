@@ -134,11 +134,14 @@ router.get('/auth/check', authMiddleware, (req, res) => {
 
 router.post('/logout', (req, res) => {
     const isProduction = process.env.NODE_ENV === 'production';
+    
     res.clearCookie('token', {
         httpOnly: true,
         secure: isProduction,
-        sameSite: isProduction ? 'none' : 'lax'
+        sameSite: isProduction ? 'none' : 'lax',
+        path: '/'
     });
+    
     return res.json({ message: "Вышли" });
 });
 

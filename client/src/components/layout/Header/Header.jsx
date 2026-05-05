@@ -20,16 +20,13 @@ const Header = () => {
     // 2. Делаем функцию асинхронной (async)
     const logout = async () => {
         try {
-            // 3. Отправляем запрос на сервер, чтобы он стер куку ("забрал ключик у Робота")
             await $authHost.post('api/users/logout');
-        } catch (e) {
-            console.error("Ошибка при выходе:", e);
-        } finally {
-            // 4. В любом случае очищаем данные в приложении
             dispatch(setUser({}));
             dispatch(setIsAuth(false));
-                        
-            navigate(LOGIN_ROUTE);
+            // Вместо navigate, делаем жесткий редирект на главную
+            window.location.href = HOME_ROUTE; 
+        } catch (e) {
+            console.error("Ошибка при выходе", e);
         }
     };
     
