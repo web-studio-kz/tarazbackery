@@ -7,14 +7,12 @@ const ApiError = require('../error/ApiError');
 const authMiddleware = require('../middleware/authMiddleware');
 const { sensitiveActionsLimiter } = require('../middleware/rateLimiter');
 
-// --- УНИВЕРСАЛЬНЫЙ ХЕЛПЕР ДЛЯ КУК ---
 const cookieOptions = {
     httpOnly: true,
-    // На локалке (development) secure должен быть false, иначе кука не сохранится без HTTPS
     secure: process.env.NODE_ENV === 'production', 
-    // На локалке 'Lax', на продакшене (Vercel->Render) обязательно 'None'
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 1 * 60 * 60 * 1000 // 1 день
+    maxAge: 1 * 60 * 60 * 1000,
+    path: '/'
 };
 
 const sendTokenCookie = (res, token) => {
@@ -85,34 +83,26 @@ router.get(
 router.post('/register/final', sensitiveActionsLimiter, async (req, res, next) => {
     try {
         const { tempToken, phone } = req.body;
-        if (!tempToken || !phone) {
-            return next(ApiError.badRequest('Не все данные предоставлены'));
-        }
+        if (!tempToken || !phone) return next(ApiError.badRequest('Нет данных'));
         
-        let userDataFromToken;
+        let userData;
         try {
-            userDataFromToken = jwt.verify(tempToken, process.env.SECRET_KEY);
-        } catch (e) {
-            return next(ApiError.badRequest('Недействительная ссылка'));
-        }
+            userData = jwt.verify(tempToken, process.env.SECRET_KEY);
+        } catch (e) { return next(ApiError.badRequest('Срок ссылки истек')); }
         
         const user = await User.create({
-            email: userDataFromToken.email,
-            name: userDataFromToken.name,
+            email: userData.email,
+            name: userData.name,
             phone: phone,
             role: 'USER'
         });
 
         const token = generateJwt(user.id, user.email, user.role, user.name, user.phone);
         
-        // Используем ТОЛЬКО функцию-хелпер один раз
-        sendTokenCookie(res, token);
-
-        return res.json({ message: "Регистрация завершена успешно" }); 
-
-    } catch (e) {
-        next(e);
-    }
+        res.cookie('token', token, cookieOptions);
+        
+        return res.json({ message: "Успешно" }); 
+    } catch (e) { next(e); }
 });
 
 // Проверка авторизации
@@ -133,15 +123,13 @@ router.get('/auth/check', authMiddleware, (req, res) => {
 // });
 
 router.post('/logout', (req, res) => {
-    const isProduction = process.env.NODE_ENV === 'production';
-    
+    // При удалении параметры ДОЛЖНЫ совпадать с cookieOptions
     res.clearCookie('token', {
         httpOnly: true,
-        secure: isProduction,
-        sameSite: isProduction ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         path: '/'
     });
-    
     return res.json({ message: "Вышли" });
 });
 

@@ -17,16 +17,18 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // 2. Делаем функцию асинхронной (async)
     const logout = async () => {
         try {
             await $authHost.post('api/users/logout');
             dispatch(setUser({}));
-            dispatch(setIsAuth(false));
-            // Вместо navigate, делаем жесткий редирект на главную
-            window.location.href = HOME_ROUTE; 
+            dispatch(setIsAuth(false));            
+            navigate(LOGIN_ROUTE);
+            toast.success("Вы вышли из системы");
         } catch (e) {
             console.error("Ошибка при выходе", e);
+            dispatch(setUser({}));
+            dispatch(setIsAuth(false));
+            navigate(LOGIN_ROUTE);
         }
     };
     
