@@ -36,7 +36,7 @@ const ProductItem = ({ product, index }) => {
                     fetchpriority={index === 0 ? "high" : "auto"}
                 />  
                 </div>
-                <h4 className={styles.title}>{t(`products.${product.id}.name`)}</h4>
+                <h2 className={styles.title}>{t(`products.${product.id}.name`)}</h2>
                 <p className={styles.price}><strong>{product.price} тг.</strong></p>
             </Link>
             <button

@@ -9,25 +9,33 @@ import { useTranslation } from 'react-i18next';
 
 const MenuPage = () => {
     const dispatch = useDispatch();
-    
     const { categories, products, selectedCategory, currentPage, limit } = useSelector(state => state.products);
+    const { t } = useTranslation(['menu', 'common']);
 
     useEffect(() => {
-        const categoryId = selectedCategory ? selectedCategory.id : null;
-        fetchProducts(categoryId, currentPage, limit).then(data => {
-            dispatch(setProducts(data)); 
-        });
-    }, [selectedCategory, currentPage, limit, dispatch]);
-    
-    useEffect(() => {
-        fetchCategories().then(data => dispatch(setCategories(data)));
-    }, [dispatch]);
+        let isMounted = true;
+        const fetchData = async () => {
+            const categoryId = selectedCategory ? selectedCategory.id : null;
+            try {
+                const [productsData, categoriesData] = await Promise.all([
+                    fetchProducts(categoryId, currentPage, limit),
+                    fetchCategories()
+                ]);
+                if (isMounted) {
+                    dispatch(setProducts(productsData));
+                    dispatch(setCategories(categoriesData));
+                }
+            } catch (error) {
+                console.error("Ошибка загрузки:", error);
+            }
+        };
+        fetchData();
+        return () => { isMounted = false; };
+    }, [selectedCategory?.id, currentPage, limit, dispatch]);
 
     const handleSelectCategory = (category) => {
         dispatch(setSelectedCategory(category));
     };
-    const { t } = useTranslation('menu');
-
 
     return (
         <div>
@@ -39,6 +47,7 @@ const MenuPage = () => {
                 onSelectCategory={handleSelectCategory}
             />
             
+            {/* Теперь товары и пагинация снова на экране */}
             <ProductList products={products} />
             <Pages />
         </div>

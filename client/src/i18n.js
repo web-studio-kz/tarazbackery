@@ -13,11 +13,14 @@ i18n
     fallbackLng: "ru",
     debug: false,
     supportedLngs: ['ru', 'kz'],
-    ns: [
-      "about", "common", "header", "bottomNav", "menu", "product", 
-      "cart", "auth", "profile", "footer", "terms", 
-      "privacy", "faq", "contacts", "home"
-    ],
+    // ns: [
+    //   "about", "common", "header", "bottomNav", "menu", "product", 
+    //   "cart", "auth", "profile", "footer", "terms", 
+    //   "privacy", "faq", "contacts", "home"
+    // ],
+    react: {
+        useSuspense: false // Это предотвратит белый экран при загрузке переводов
+    },
     defaultNS: "common",    
     detection: {      
         order: ['localStorage', 'cookie', 'navigator'],      

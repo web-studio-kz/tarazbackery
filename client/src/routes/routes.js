@@ -2,11 +2,18 @@ import MenuPage from "./pages/MenuPage";
 import CartPage from "./pages/CartPage";
 import AuthPage from "./pages/AuthPage"; 
 import ProfilePage from "./pages/ProfilePage";
-import { CART_ROUTE, MENU_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts";
+// 1. Импортируй HomePage
+import HomePage from "./pages/HomePage"; 
+import { HOME_ROUTE, CART_ROUTE, MENU_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts";
 
 export const publicRoutes = [
+    // 2. Добавь его в список
     {
-        path: MENU_ROUTE,
+        path: HOME_ROUTE, // это '/'
+        Component: HomePage
+    },
+    {
+        path: MENU_ROUTE, // это '/menu'
         Component: MenuPage
     },
     {
