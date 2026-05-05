@@ -24,9 +24,9 @@ app.use(cookieParser()); // Инициализируем куки ПЕРЕД р�
 
 // 3. CORS — Настройка для работы с Credentials (Cookies)
 const whitelist = [
-    process.env.CLIENT_URL, // http://192.168.1.33:5173
-    process.env.LOCAL_URL,  // http://localhost:5173
-    'http://localhost:5001' // Сам сервер (иногда нужно для отладки)
+    process.env.CLIENT_URL, 
+    process.env.LOCAL_URL,  
+    'http://localhost:5001' 
 ];
 
 app.use(cors({

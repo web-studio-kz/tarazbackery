@@ -9,9 +9,9 @@ const { sensitiveActionsLimiter } = require('../middleware/rateLimiter');
 
 const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', 
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 1 * 60 * 60 * 1000,
+    secure: true,    
+    sameSite: 'Lax', 
+    maxAge: 24 * 60 * 60 * 1000,
     path: '/'
 };
 
@@ -34,7 +34,7 @@ const oAuthCallbackHandler = (req, res) => {
         res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
     } else {
         const token = generateJwt(profileOrUser.id, profileOrUser.email, profileOrUser.role, profileOrUser.name, profileOrUser.phone);
-        sendTokenCookie(res, token); // Используем наш хелпер
+        sendTokenCookie(res, token);
         res.redirect(`${process.env.CLIENT_URL}/auth/callback`);
     }
 };
@@ -105,14 +105,10 @@ router.post('/register/final', sensitiveActionsLimiter, async (req, res, next) =
     } catch (e) { next(e); }
 });
 
-// Проверка авторизации
-router.get('/auth/check', authMiddleware, (req, res) => {
-    // Middleware уже проверил куку и положил данные в req.user
-    // Просто отдаем их фронтенду
+router.get('/auth/check', authMiddleware, (req, res) => {    
     return res.json(req.user); 
 });
 
-// --- НОВЫЙ РОУТ: ВЫХОД (LOGOUT) ---
 // router.post('/logout', (req, res) =>  {
 //     res.clearCookie('token', {
 //         httpOnly: true,
@@ -123,7 +119,6 @@ router.get('/auth/check', authMiddleware, (req, res) => {
 // });
 
 router.post('/logout', (req, res) => {
-    // При удалении параметры ДОЛЖНЫ совпадать с cookieOptions
     res.clearCookie('token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
