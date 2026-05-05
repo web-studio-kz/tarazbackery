@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/api-proxy/:path*",
-        "destination": "https://tarazbackery.onrender.com/api/:path*"
+        "destination": "https://tarazbackery.onrender.com/:path*"
       },
       {
         "source": "/((?!api-proxy|static|.*\\..*).*)",
