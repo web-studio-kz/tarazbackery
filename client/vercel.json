@@ -1,8 +1,12 @@
 {
     "rewrites": [
       {
-        "source": "/((?!api|static|.*\\..*).*)",
+        "source": "/api-proxy/:path*",
+        "destination": "https://tarazbackery.onrender.com/api/:path*"
+      },
+      {
+        "source": "/((?!api-proxy|static|.*\\..*).*)",
         "destination": "/index.html"
       }
     ]
-}
+  }

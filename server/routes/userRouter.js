@@ -14,7 +14,7 @@ const cookieOptions = {
     secure: process.env.NODE_ENV === 'production', 
     // На локалке 'Lax', на продакшене (Vercel->Render) обязательно 'None'
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 24 * 60 * 60 * 1000 // 1 день
+    maxAge: 1 * 60 * 60 * 1000 // 1 день
 };
 
 const sendTokenCookie = (res, token) => {
@@ -25,7 +25,7 @@ const generateJwt = (id, email, role, name, phone) => {
     return jwt.sign(
         { id, email, role, name, phone }, 
         process.env.SECRET_KEY,
-        { expiresIn: '24h' }
+        { expiresIn: '1h' }
     );
 };
 

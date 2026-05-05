@@ -3,20 +3,17 @@
 
 <head>
     <meta charset="UTF-8" />
+    <!-- 1. Предзагрузка главного баннера (LCP) -->
     <link rel="preload" as="image" href="/hero-burger.webp" fetchpriority="high">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#e31837">
-    <meta name="description"
-        content="быстрая доставка сочной курочки, бургеров и баскетов в Таразе. Заказывайте любимую еду онлайн.">
+    <meta name="description" content="Пекарня — быстрая доставка сочной курочки, бургеров и баскетов в Таразе.">
     <title>Доставка еды Тараз</title>
-    <!-- <link rel="dns-prefetch" href="https://tarazbackery.onrender.com"> -->
-    <link rel="preconnect" href="https://tarazbackery.onrender.com" crossorigin>
-    <!-- <link rel="preload" as="image" href="https://tarazbackery.onrender.com/images/products/shef_ost.webp" fetchpriority="high"> -->
+
+    <!-- 2. Предзагрузка переводов -->
     <link rel="preload" href="/locales/ru/common.json" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="/locales/ru/menu.json" as="fetch" crossorigin="anonymous">
-    <!-- <link rel="preconnect" href="https://tarazbackery.onrender.com" crossorigin> -->
-    <!-- <link rel="preload" href="https://tarazbackery.onrender.com/api/products?page=1&limit=8" as="fetch" crossorigin="anonymous"> -->
 </head>
 
 <body>
