@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import AppRouter from './components/AppRouter';
 import AppLayout from './components/layout/AppLayout/AppLayout';
 import Spinner from './components/ui/Spinner/Spinner';
+import CookieConsent from './components/ui/CookieConsent/CookieConsent';
 import { check } from './http/userAPI';
 import { setIsAuth, setUser } from './store/userSlice';
-
 
 const App = () => {
     const dispatch = useDispatch();
@@ -17,22 +16,24 @@ const App = () => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            if (localStorage.getItem('token')) {
-                try {
-                    const userData = await check();
+            try {
+                const userData = await check();
+                if (userData) {
                     dispatch(setUser(userData));
                     dispatch(setIsAuth(true));
-                } catch (e) {
-                    console.error("Ошибка проверки токена:", e.response?.data?.message);
-                    localStorage.removeItem('token');
                 }
+            } catch (e) {                
+                // console.log("Пользователь не авторизован (гость)");
+            } finally {
+                setLoading(false);
             }
         };
-        checkAuth().finally(() => setLoading(false));
-    }, [dispatch]);
+        checkAuth();
+    }, [dispatch]); 
 
+    
     if (loading) {
-        return <Spinner fullPage={true} />
+        return <Spinner fullPage={true} />;
     }
     
     return (
@@ -40,6 +41,7 @@ const App = () => {
             <AppLayout>
                 <AppRouter />
             </AppLayout>
+            <CookieConsent />
             <ToastContainer
                 className="my-toast-container"
                 position="bottom-right"
@@ -50,4 +52,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default App; 

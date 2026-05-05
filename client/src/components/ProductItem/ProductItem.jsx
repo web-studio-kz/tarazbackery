@@ -32,12 +32,12 @@ const ProductItem = ({ product, index }) => {
                     className={styles.image} 
                     width="250"     
                     height="180"    
-                    loading={index < 2 ? "eager" : "lazy"}
+                    loading={index < 4 ? "eager" : "lazy"}
                     fetchpriority={index === 0 ? "high" : "auto"}
                 />  
                 </div>
                 <h4 className={styles.title}>{t(`products.${product.id}.name`)}</h4>
-                <p className={styles.price}>{t('price_label')} <strong>{product.price} тг.</strong></p>
+                <p className={styles.price}><strong>{product.price} тг.</strong></p>
             </Link>
             <button
                 onClick={handleAddToCart}

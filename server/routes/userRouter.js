@@ -7,6 +7,20 @@ const ApiError = require('../error/ApiError');
 const authMiddleware = require('../middleware/authMiddleware');
 const { sensitiveActionsLimiter } = require('../middleware/rateLimiter');
 
+// --- УНИВЕРСАЛЬНЫЙ ХЕЛПЕР ДЛЯ КУК ---
+const cookieOptions = {
+    httpOnly: true,
+    // На локалке (development) secure должен быть false, иначе кука не сохранится без HTTPS
+    secure: process.env.NODE_ENV === 'production', 
+    // На локалке 'Lax', на продакшене (Vercel->Render) обязательно 'None'
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: 24 * 60 * 60 * 1000 // 1 день
+};
+
+const sendTokenCookie = (res, token) => {
+    res.cookie('token', token, cookieOptions);
+};
+
 const generateJwt = (id, email, role, name, phone) => {
     return jwt.sign(
         { id, email, role, name, phone }, 
@@ -17,15 +31,39 @@ const generateJwt = (id, email, role, name, phone) => {
 
 const oAuthCallbackHandler = (req, res) => {
     const profileOrUser = req.user;
-
     if (profileOrUser.isTemporary) {
         const tempToken = jwt.sign(profileOrUser, process.env.SECRET_KEY, { expiresIn: '10m' });
         res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
     } else {
         const token = generateJwt(profileOrUser.id, profileOrUser.email, profileOrUser.role, profileOrUser.name, profileOrUser.phone);
-        res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+        sendTokenCookie(res, token); // Используем наш хелпер
+        res.redirect(`${process.env.CLIENT_URL}/auth/callback`);
     }
 };
+
+//продакшн
+// const oAuthCallbackHandler = (req, res) => {
+//     const profileOrUser = req.user;
+
+//     if (profileOrUser.isTemporary) {
+//         const tempToken = jwt.sign(profileOrUser, process.env.SECRET_KEY, { expiresIn: '10m' });
+//         // Для временного токена можно оставить передачу через URL, так как это не вход
+//         res.redirect(`${process.env.CLIENT_URL}/finish-registration?tempToken=${tempToken}`);
+//     } else {
+//         const token = generateJwt(profileOrUser.id, profileOrUser.email, profileOrUser.role, profileOrUser.name, profileOrUser.phone);
+        
+//         // УСТАНАВЛИВАЕМ КУКУ ПЕРЕД РЕДИРЕКТОМ
+//         res.cookie('token', token, {
+//             httpOnly: true,
+//             secure: true,
+//             sameSite: 'none',
+//             maxAge: 24 * 60 * 60 * 1000
+//         });
+
+//         // Теперь в URL токен НЕ ПЕРЕДАЕМ (безопасность!)
+//         res.redirect(`${process.env.CLIENT_URL}/auth/callback`);
+//     }
+// };
 
 // Google
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -43,6 +81,7 @@ router.get(
     oAuthCallbackHandler
 );
 
+// Финализация регистрации
 router.post('/register/final', sensitiveActionsLimiter, async (req, res, next) => {
     try {
         const { tempToken, phone } = req.body;
@@ -54,21 +93,7 @@ router.post('/register/final', sensitiveActionsLimiter, async (req, res, next) =
         try {
             userDataFromToken = jwt.verify(tempToken, process.env.SECRET_KEY);
         } catch (e) {
-            return next(ApiError.badRequest('Недействительная или просроченная ссылка для регистрации.'));
-        }
-        
-        if (!userDataFromToken.isTemporary) {
-            return next(ApiError.badRequest('Неверный тип токена'));
-        }
-        
-        const existingPhone = await User.findOne({ where: { phone } });
-        if (existingPhone) {
-            return next(ApiError.badRequest('Этот номер телефона уже используется'));
-        }
-        
-        const existingEmail = await User.findOne({ where: { email: userDataFromToken.email } });
-        if (existingEmail) {
-            return next(ApiError.badRequest('Этот email уже зарегистрирован'));
+            return next(ApiError.badRequest('Недействительная ссылка'));
         }
         
         const user = await User.create({
@@ -79,16 +104,42 @@ router.post('/register/final', sensitiveActionsLimiter, async (req, res, next) =
         });
 
         const token = generateJwt(user.id, user.email, user.role, user.name, user.phone);
-        res.json({ token });
+        
+        // Используем ТОЛЬКО функцию-хелпер один раз
+        sendTokenCookie(res, token);
+
+        return res.json({ message: "Регистрация завершена успешно" }); 
 
     } catch (e) {
         next(e);
     }
 });
 
-router.get('/auth/check', authMiddleware, (req, res, next) => {
-    const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.name, req.user.phone);
-    return res.json({ token });
+// Проверка авторизации
+router.get('/auth/check', authMiddleware, (req, res) => {
+    // Middleware уже проверил куку и положил данные в req.user
+    // Просто отдаем их фронтенду
+    return res.json(req.user); 
+});
+
+// --- НОВЫЙ РОУТ: ВЫХОД (LOGOUT) ---
+// router.post('/logout', (req, res) =>  {
+//     res.clearCookie('token', {
+//         httpOnly: true,
+//         secure: process.env.NODE_ENV === 'production',
+//         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+//     });
+//     return res.json({ message: "Вышли" });
+// });
+
+router.post('/logout', (req, res) => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax'
+    });
+    return res.json({ message: "Вышли" });
 });
 
 router.get("/login/failed", (req, res) => {

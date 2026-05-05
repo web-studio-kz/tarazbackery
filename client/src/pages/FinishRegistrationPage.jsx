@@ -62,23 +62,26 @@ const FinishRegistrationPage = () => {
 
     const handleSubmit = async () => {
         if (phoneDigits.length !== 10) {
-            return toast.warn("Пожалуйста, введите полный номер телефона (10 цифр).");
+            return toast.warn("Пожалуйста, введите полный номер телефона.");
         }
         setLoading(true);
         try {
             const fullPhoneNumber = `+7${phoneDigits}`;
-            const response = await finalRegistration(tempToken, fullPhoneNumber);
-            const finalToken = response.token;
             
-            localStorage.setItem('token', finalToken);
-            const userData = jwtDecode(finalToken);
-            dispatch(setUser(userData));
-            dispatch(setIsAuth(true));
+            // Отправляем запрос. Кука 'token' установится сервером сама
+            await finalRegistration(tempToken, fullPhoneNumber);
             
-            toast.success("Добро пожаловать! Регистрация успешно завершена!");
-            navigate(MENU_ROUTE);
+            // После успеха просто редиректим на главную. 
+            // App.jsx при загрузке сам вызовет check() и увидит пользователя.
+            toast.success("Регистрация завершена!");
+            
+            // Даем небольшую задержку, чтобы кука точно успела прописаться
+            setTimeout(() => {
+                window.location.href = MENU_ROUTE;
+            }, 500);
+    
         } catch (e) {
-            toast.error(e.response?.data?.message || "Произошла непредвиденная ошибка");
+            toast.error(e.response?.data?.message || "Ошибка при регистрации");
             setLoading(false);
         }
     };

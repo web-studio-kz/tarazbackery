@@ -4,10 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import { selectCartTotalQuantity } from '../../../store/cartSlice';
 import { setIsAuth, setUser } from '../../../store/userSlice';
-import { HOME_ROUTE, MENU_ROUTE, CART_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { HOME_ROUTE, CART_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import LanguageSwitcher from '../../ui/LanguageSwitcher/LanguageSwitcher';
 import { FiShoppingCart, FiUser, FiLogOut } from 'react-icons/fi';
 import { useTranslation } from 'react-i18next';
+import { $authHost } from '../../../http'; 
 
 const Header = () => {
     const { t } = useTranslation('header');
@@ -16,11 +17,20 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const logout = () => {
-        dispatch(setUser({}));
-        dispatch(setIsAuth(false));
-        localStorage.removeItem('token');
-        navigate(LOGIN_ROUTE);
+    // 2. Делаем функцию асинхронной (async)
+    const logout = async () => {
+        try {
+            // 3. Отправляем запрос на сервер, чтобы он стер куку ("забрал ключик у Робота")
+            await $authHost.post('api/users/logout');
+        } catch (e) {
+            console.error("Ошибка при выходе:", e);
+        } finally {
+            // 4. В любом случае очищаем данные в приложении
+            dispatch(setUser({}));
+            dispatch(setIsAuth(false));
+                        
+            navigate(LOGIN_ROUTE);
+        }
     };
     
     const handleUserIconClick = () => {
@@ -40,19 +50,19 @@ const Header = () => {
             <div className={styles.nav}>
                 <LanguageSwitcher />
 
-                <Link to={CART_ROUTE} className={styles.iconButton} aria-label="Перейти в корзину" title={t('tooltip_cart')}>
+                <Link to={CART_ROUTE} className={styles.iconButton} aria-label="Перейти в корзину" data-tooltip={t('tooltip_cart')} data-tooltip-pos="bottom">
                     <div className={styles.cartIconWrapper}>
                         <FiShoppingCart />
                         {totalQuantity > 0 && <span className={styles.cartBadge}>{totalQuantity}</span>}
                     </div>
                 </Link>
 
-                <button onClick={handleUserIconClick} className={styles.iconButton} aria-label="Личный кабинет" title={t('tooltip_profile')}>
+                <button onClick={handleUserIconClick} className={styles.iconButton} aria-label="Личный кабинет" data-tooltip={t('tooltip_profile')} data-tooltip-pos="bottom">
                     <FiUser />
                 </button>
 
                 {isAuth && (
-                    <button onClick={logout} className={styles.iconButton} aria-label="Выйти из аккаунта" title={t('tooltip_logout')}>
+                    <button onClick={logout} className={styles.iconButton} aria-label="Выйти из аккаунта" data-tooltip={t('tooltip_logout')} data-tooltip-pos="bottom">
                         <FiLogOut />
                     </button>
                 )}

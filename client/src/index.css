@@ -11,6 +11,7 @@
   --background-hover: #f0f0f0;  
   --border-color: #e5e5e5;
   --border-hover-color: #dddddd;
+  --background-yellow: #ffd240;
 
   --color-success: #28a745;
   --color-danger: #dc3545;
@@ -80,3 +81,67 @@ button {
       left: auto;
     }
   }
+/* Любой элемент с атрибутом data-tooltip получит эти свойства */
+[data-tooltip] {
+    position: relative;
+    /* cursor: pointer; */
+}
+
+/* плашка с текстом */
+[data-tooltip]::after {
+    content: attr(data-tooltip); /* Магия: берем текст прямо из HTML-атрибута */
+    position: absolute;
+    bottom: calc(100% + 10px); /* По умолчанию сверху элемента */
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    
+    background-color: rgba(0, 0, 0, 0.85);
+    color: var(--text-light);
+    padding: 14px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 10000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Маленький треугольник-стрелочка */
+[data-tooltip]::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 10000;
+}
+
+/* Появление при наведении */
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Опционально: если нужно, чтобы подсказка вылетала СНИЗУ */
+[data-tooltip-pos="bottom"]::after {
+    bottom: auto;
+    top: calc(100% + 10px);
+}
+[data-tooltip-pos="bottom"]::before {
+    bottom: auto;
+    top: calc(100% + 4px);
+    border-width: 0 6px 6px 6px;
+    border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
+}

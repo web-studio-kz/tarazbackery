@@ -3,34 +3,28 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const $host = axios.create({
-    baseURL: API_URL
+    baseURL: API_URL,
+    withCredentials: true // Обязательно
 });
 
 const $authHost = axios.create({
-    baseURL: API_URL
+    baseURL: API_URL,
+    withCredentials: true // Обязательно
 });
 
-const authInterceptor = config => {
-    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
-    return config;
-}
-
-$authHost.interceptors.request.use(authInterceptor);
+// Интерцептор на запрос УДАЛЕН (он больше не нужен)
 
 $authHost.interceptors.response.use(
-    (response) => {
-        return response;
-    },
+    (response) => response,
     async (error) => {
         if (error.response && error.response.status === 401) {
-            console.log("INTERCEPTOR: Получена ошибка 401. Токен истек.");
-            localStorage.removeItem('token');
+            // ОЧЕНЬ ВАЖНО: 
+            // Просто выводим в консоль, НО НЕ ДЕЛАЕМ window.location.href = '/login'
+            // Иначе гость никогда не попадет на главную!
+            console.log("Сессия отсутствует или истекла");
         }
         return Promise.reject(error);
     }
 );
 
-export {
-    $host,
-    $authHost
-};
+export { $host, $authHost };

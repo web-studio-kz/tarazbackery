@@ -1,0 +1,47 @@
+.wrapper {
+    position: fixed;
+    bottom: 80px; /* Над BottomNav на мобилках */
+    left: 20px;
+    right: 20px;
+    background-color: var(--text-dark);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10000;
+}
+
+.text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.button {
+    background-color: var(--kfc-red);
+    color: var(--text-dark);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        width: 400px;
+        left: 20px;
+        right: auto;
+        bottom: 20px;
+    }
+}

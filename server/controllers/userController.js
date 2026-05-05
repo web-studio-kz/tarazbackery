@@ -25,7 +25,13 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 5);
         const user = await User.create({ email, name, phone, password: hashPassword });
         const token = generateJwt(user.id, user.email, user.role);
-        return res.json({ token });
+        res.cookie('token', token, {
+            httpOnly: true, // Хакер не увидит через JS
+            secure: true,   // Только через защищенное соединение
+            sameSite: 'none', // Чтобы работало между Vercel и Render
+            maxAge: 24 * 60 * 60 * 1000 // Ключик работает 1 день
+        });
+        return res.json({ message: "Успешно вошли!" });
     }
 
     async login(req, res, next) {

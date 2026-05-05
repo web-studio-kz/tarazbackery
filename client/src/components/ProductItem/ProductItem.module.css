@@ -1,6 +1,7 @@
 .card {
-    background-color: #fff;
-    border-radius: 12px;
+    position: relative;
+    background-color: var(--background-white);
+    border-radius: 1px;
     padding: 1rem;
     text-align: center;
     display: flex;
@@ -18,7 +19,7 @@
 .imageContainer {
     margin-bottom: 1rem;
     aspect-ratio: 250 / 180; 
-    background-color: #f3f3f3;
+    background-color: var(--background-white);
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -43,10 +44,21 @@
 }
 
 .price {
+    position: absolute;
+    top: 0px;      /* Отступ сверху */
+    right: 0px;    /* Отступ справа */
+    
+    /* Делаем цену в виде стильной плашки */
+    background-color: var(--background-yellow); 
+    color: var(--text-dark);                    
+    padding: 6px 12px;
+    border-radius: 1px;
+    
     font-weight: 700;
     font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
+    z-index: 10;    /* Чтобы цена была поверх картинки */
+    margin: 0;      /* Сбрасываем стандартные отступы <p> */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .button {
@@ -85,6 +97,4 @@
 .inCartButton:hover {
     background-color: var(--kfc-red);
     color: var(--text-light-gray);
-
-
 }
