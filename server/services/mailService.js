@@ -4,7 +4,10 @@ dns.setDefaultResultOrder('ipv4first');
 class MailService {
     constructor() {
         this.transporter = nodemailer.createTransport({
-            service: 'gmail', 
+            host: 'smtp.gmail.com',
+            port: process.env.SMTP_PORT,
+            secure: true,
+            family: 4,
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASSWORD,
@@ -13,6 +16,10 @@ class MailService {
             connectionTimeout: 10000, // 10 секунд на установку связи
             greetingTimeout: 10000,   // 10 секунд на приветствие сервера
             socketTimeout: 10000,  
+            tls: {
+                // Игнорируем ошибки сертификатов, если Render их подменяет
+                rejectUnauthorized: false
+            }
         });
 
         this.sendNewOrderNotification = this.sendNewOrderNotification.bind(this);
