@@ -7,7 +7,7 @@ passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: `${process.env.API_URL}/api/users/google/callback`
+        callbackURL: process.env.GOOGLE_CALLBACK_URL 
     },
     async (accessToken, refreshToken, profile, done) => {
         try {
@@ -42,7 +42,7 @@ passport.use(
     new YandexStrategy({
         clientID: process.env.YANDEX_CLIENT_ID,
         clientSecret: process.env.YANDEX_CLIENT_SECRET,
-        callbackURL: `${process.env.API_URL}/api/users/yandex/callback`
+        callbackURL: process.env.YANDEX_CALLBACK_URL
     },
     async (accessToken, refreshToken, profile, done) => {
         try {

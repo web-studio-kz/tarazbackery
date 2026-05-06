@@ -10,8 +10,8 @@ const { sensitiveActionsLimiter } = require('../middleware/rateLimiter');
 const cookieOptions = {
     httpOnly: true,
     secure: true,    
-    sameSite: 'Lax', 
-    maxAge: 24 * 60 * 60 * 1000,
+    sameSite: 'none', 
+    maxAge: 3 * 60 * 60 * 1000,
     path: '/'
 };
 
@@ -121,8 +121,8 @@ router.get('/auth/check', authMiddleware, (req, res) => {
 router.post('/logout', (req, res) => {
     res.clearCookie('token', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: true,
+        sameSite: 'None',
         path: '/'
     });
     return res.json({ message: "Вышли" });
