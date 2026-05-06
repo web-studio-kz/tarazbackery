@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
-
+const dns = require('node:dns');
+dns.setDefaultResultOrder('ipv4first'); 
 class MailService {
     constructor() {
         this.transporter = nodemailer.createTransport({
