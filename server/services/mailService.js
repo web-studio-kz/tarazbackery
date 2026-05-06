@@ -4,18 +4,15 @@ dns.setDefaultResultOrder('ipv4first');
 class MailService {
     constructor() {
         this.transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: process.env.SMTP_PORT,
-            secure: true,
-            // ПРИНУДИТЕЛЬНО ИСПОЛЬЗУЕМ IPv4 (решает ошибку ENETUNREACH)
-            family: 4, 
+            service: 'gmail', 
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASSWORD,
             },
-            tls: {
-                rejectUnauthorized: false
-            }
+            // Увеличиваем таймауты ожидания (очень важно для Render)
+            connectionTimeout: 10000, // 10 секунд на установку связи
+            greetingTimeout: 10000,   // 10 секунд на приветствие сервера
+            socketTimeout: 10000,  
         });
 
         this.sendNewOrderNotification = this.sendNewOrderNotification.bind(this);
