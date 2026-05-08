@@ -28,7 +28,8 @@ const AuthCallbackPage = () => {
                 dispatch(setIsAuth(true));
                 
                 toast.success(`С возвращением, ${userData.name || 'пользователь'}!`);
-                navigate(MENU_ROUTE);
+                // navigate(MENU_ROUTE);
+                window.location.href = MENU_ROUTE;
             } catch (e) {
                 console.error("Ошибка авторизации:", e);
                 // Если произошла реальная ошибка, позволяем попробовать снова при след. монтировании
